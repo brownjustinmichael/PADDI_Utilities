@@ -19,7 +19,7 @@ temp_axis = plt.subplot2grid((3, 4), (0, 0), colspan=2)
 chem_axis = plt.subplot2grid((3, 4), (1, 0), colspan=2, sharex=temp_axis)
 temp_spec_axis = plt.subplot2grid((3, 4), (0, 2))
 chem_spec_axis = plt.subplot2grid((3, 4), (1, 2), sharex=temp_spec_axis)
-u_spec_axis = plt.subplot2grid((3, 4), (2, 2), sharey=temp_spec_axis)
+u_spec_axis = plt.subplot2grid((3, 4), (2, 2), sharex=temp_spec_axis)
 temp_prof_axis = plt.subplot2grid((3, 4), (0, 3))
 chem_prof_axis = plt.subplot2grid((3, 4), (1, 3), sharey=temp_prof_axis)
 
@@ -41,6 +41,7 @@ chem_axis.set_yscale("log")
 for frame in spectral_data:
 	temp_spec_axis.plot(frame["k0"], frame["energy_Temp"], alpha=0.1, color="black")
 	chem_spec_axis.plot(frame["k0"], frame["energy_Chem"], alpha=0.1, color="black")
+	u_spec_axis.plot(frame["k0"], frame["energy_u3"], alpha=0.1, color="black")
 
 temp_spec_axis.plot(spectral_data[-1]["k0"], spectral_data[-1]["energy_Temp"], color="red")
 temp_spec_axis.set_ylabel("energy\_Temp")
@@ -49,13 +50,13 @@ temp_spec_axis.set_yscale("log")
 
 chem_spec_axis.plot(spectral_data[-1]["k0"], spectral_data[-1]["energy_Chem"], color="red")
 chem_spec_axis.set_ylabel("energy\_Chem")
-chem_spec_axis.set_ylim((10**-18, 10**-8))
+chem_spec_axis.set_ylim((10**-24, 10**-8))
 chem_spec_axis.set_yscale("log")
 
 u_spec_axis.plot(spectral_data[-1]["k0"], spectral_data[-1]["energy_u3"], color="red")
 u_spec_axis.set_ylabel("energy\_u3")
 u_spec_axis.set_xlabel("k0")
-u_spec_axis.set_ylim((10**-18, 10**-8))
+u_spec_axis.set_ylim((10**-24, 10**-8))
 u_spec_axis.set_yscale("log")
 
 profiles = [("u1_avg", ux_prof_axis),
