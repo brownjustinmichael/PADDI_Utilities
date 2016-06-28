@@ -15,7 +15,7 @@ if len(args.files) == 0:
 # Construct the Diagnostic data object
 data = Diagnostic(args.files)
 
-fig, (temp_axis, comp_axis) = plt.subplots(2, 1, figsize=(6, 6))
+fig, (temp_axis, comp_axis) = plt.subplots(2, 1, figsize=(6, 6), sharex=True)
 
 temp_axis.plot(data["t"], data["flux_Temp"])
 temp_axis.set_ylabel("Temperature Flux")
