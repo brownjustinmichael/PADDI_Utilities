@@ -91,8 +91,6 @@ class Diagnostic(pd.DataFrame):
         else:
             super(Diagnostic, self).__init__()
 
-
-
         self.parameters = Parameters.from_file(files[0])
 
 

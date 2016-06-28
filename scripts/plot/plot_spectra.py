@@ -10,7 +10,7 @@ parser.add_argument("--field", default="energy_Chem")
 args = parser.parse_args()
 
 # If files have not been specified, use all files named OUT* in the current directory
-if args.files is None:
+if len(args.files) == 0:
     args.files = glob.glob("Z_SPEC*")
 
 # Construct the Diagnostic data object

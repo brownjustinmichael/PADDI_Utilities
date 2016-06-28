@@ -13,6 +13,9 @@ class PlotArgumentParser(argparse.ArgumentParser):
 
 		self.args = self.parse_args()
 
+		if args.files is None:
+			args.files = []
+
 	def exit(self, fig):
 		plt.style.use(self.args.format)
 
