@@ -9,7 +9,7 @@ parser = PlotArgumentParser()
 args = parser.parse_args()
 
 # If files have not been specified, use all files named OUT* in the current directory
-if args.files is []:
+if len(args.files) == 0:
     args.files = glob.glob("OUT*")
 
 # Construct the Diagnostic data object
