@@ -84,7 +84,14 @@ class Diagnostic(pd.DataFrame):
             array = np.genfromtxt(file_name, dtype=format)
             file_data.append(pd.DataFrame(array))
 
-        super(Diagnostic, self).__init__(pd.concat(file_data))
+        if len(file_data) > 1:
+            super(Diagnostic, self).__init__(pd.concat(file_data))
+        elif len(file_data) == 1:
+            super(Diagnostic, self).__init__(file_data[0])
+        else:
+            super(Diagnostic, self).__init__()
+
+
 
         self.parameters = Parameters.from_file(files[0])
 
