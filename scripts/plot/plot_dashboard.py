@@ -45,18 +45,18 @@ for frame in spectral_data:
 
 temp_spec_axis.plot(spectral_data[-1]["k0"], spectral_data[-1]["energy_Temp"], color="red")
 temp_spec_axis.set_ylabel("energy\_Temp")
-temp_spec_axis.set_ylim((10**-24, 10**-8))
+temp_spec_axis.set_ylim((10**-24, 10**0))
 temp_spec_axis.set_yscale("log")
 
 chem_spec_axis.plot(spectral_data[-1]["k0"], spectral_data[-1]["energy_Chem"], color="red")
 chem_spec_axis.set_ylabel("energy\_Chem")
-chem_spec_axis.set_ylim((10**-24, 10**-8))
+chem_spec_axis.set_ylim((10**-24, 10**0))
 chem_spec_axis.set_yscale("log")
 
 u_spec_axis.plot(spectral_data[-1]["k0"], spectral_data[-1]["energy_u3"], color="red")
 u_spec_axis.set_ylabel("energy\_u3")
 u_spec_axis.set_xlabel("k0")
-u_spec_axis.set_ylim((10**-24, 10**-8))
+u_spec_axis.set_ylim((10**-24, 10**0))
 u_spec_axis.set_yscale("log")
 
 profiles = [("u1_avg", ux_prof_axis),
