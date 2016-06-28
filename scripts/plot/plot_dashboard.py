@@ -28,10 +28,12 @@ uz_prof_axis = plt.subplot2grid((3, 4), (2, 2), sharey=temp_prof_axis)
 rho_prof_axis = plt.subplot2grid((3, 4), (2, 3), sharey=temp_prof_axis)
 
 temp_axis.plot(diagnostic_data["t"], diagnostic_data["flux_Temp"])
+temp_axis.plot(diagnostic_data["t"], -diagnostic_data["flux_Temp"])
 temp_axis.set_ylabel("flux\_Temp")
 temp_axis.set_yscale("log")
 
 chem_axis.plot(diagnostic_data["t"], diagnostic_data["flux_Chem"])
+chem_axis.plot(diagnostic_data["t"], -diagnostic_data["flux_Chem"])
 chem_axis.set_ylabel("flux\_Chem")
 chem_axis.set_xlabel("t")
 chem_axis.set_yscale("log")
