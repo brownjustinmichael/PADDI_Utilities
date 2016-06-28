@@ -7,14 +7,11 @@ class PlotArgumentParser(argparse.ArgumentParser):
 	def __init__(self):
 		super(PlotArgumentParser, self).__init__()
 
-		self.add_argument("files", nargs="*", default=None)
+		self.add_argument("files", nargs="*", default=tuple())
 		self.add_argument("--output", default=None)
 		self.add_argument("--format", default="paper")
 
 		self.args = self.parse_args()
-
-		if args.files is None:
-			args.files = []
 
 	def exit(self, fig):
 		plt.style.use(self.args.format)
