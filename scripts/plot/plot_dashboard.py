@@ -51,9 +51,9 @@ chem_spec_axis.set_xlabel("k0")
 chem_spec_axis.set_ylim((10**-18, 10**-8))
 chem_spec_axis.set_yscale("log")
 
-profiles = [("u1", ux_prof_axis),
-            ("u2", uy_prof_axis),
-            ("u3", uz_prof_axis),
+profiles = [("u1_avg", ux_prof_axis),
+            ("u2_avg", uy_prof_axis),
+            ("u3_avg", uz_prof_axis),
             ("Temp", temp_prof_axis),
             ("Chem", chem_prof_axis)]
 
@@ -64,8 +64,8 @@ for key, axis in profiles:
 	axis.set_ylabel("z")
 	axis.set_xlabel(key)
 
-rho = (-profile_data.parameters.thermal_buoyancy / profile_data.parameters.viscous_diffusion * profile_data["Temp"]
-      + profile_data.parameters.chemical_buoyancy / profile_data.parameters.viscous_diffusion * profile_data["Chem"]
+rho = (-profile_data.parameters.thermal_buoyancy / profile_data.parameters.viscous_diffusion * profile_data["Temp_avg"]
+      + profile_data.parameters.chemical_buoyancy / profile_data.parameters.viscous_diffusion * profile_data["Chem_avg"]
       + (-profile_data.parameters.thermal_stratification + profile_data.parameters.chemical_stratification) * profile_data["z1"])
 
 for i, frame in enumerate(profile_data):
