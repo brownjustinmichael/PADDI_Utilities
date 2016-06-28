@@ -29,49 +29,70 @@ class Profiles(np.ndarray):
                       ("Temp_avg", np.float),
                       ("Chem_avg", np.float),]
 
-    def __new__(cls, files, format=default_format, sort_by=None, step_regex="#Step=(.*),Time=(.*)", *args, **kwargs):
+    def __new__(cls, files, format=default_format, sort_by=("z1",), step_regex="#Step=(.*),Time=(.*)", *args, **kwargs):
         times = []
         timesteps = []
         data = None
-        if sort_by is None:
-            sort_by = ["z1"]
 
         for file_name in files:
             file_string = ""
             for line in open(file_name):
-                if line.lstrip(" ") is "\n":
-                    dims = []
-                    array = np.genfromtxt(StringIO(file_string), dtype=format, comments="#")
-                    if len(array) != 0:
-                        total = len(array)
-                        for key in sort_by:
-                            array = np.sort(array, order=key)
-                            dims.append(total / np.argmax(array[key] != array[key][0]))
-
-                        dims.reverse()
-                        array = array.reshape([1] + dims)
-
-                        comment = file_string.split("\n")[0]
-                        comment = comment.replace(" ","")
-
-                        result = re.search(step_regex, comment)
-
-                        timesteps.append(int(result.groups()[0]))
-                        times.append(float(result.groups()[1]))
-
-                        if data is None:
-                            data = array
-                        else:
-                            data = np.concatenate([data, array])
+                if line.lstrip() is "":
+                    time, timestep, array = cls.array_from_string(file_string, format=format, sort_by=sort_by, step_regex=step_regex)
                     file_string = ""
+
+                    if array is None:
+                        continue
+                    times.append(time)
+                    timesteps.append(timestep)
+                    if data is None:
+                        data = array
+                    else:
+                        data = np.concatenate([data, array])
                 else:
                     file_string += line
 
-        obj = np.ndarray.__new__(cls, data.shape, dtype=data.dtype, buffer=data.data)
+            time, timestep, array = cls.array_from_string(file_string, format=format, sort_by=sort_by, step_regex=step_regex)
+            if array is None:
+                continue
+            times.append(time)
+            timesteps.append(timestep)
+            if data is None:
+                data = array
+            else:
+                data = np.concatenate([data, array])
+            file_string = ""
+
+        obj = np.ndarray.__new__(cls, data.shape, dtype=data.dtype, buffer=data.data, *args, **kwargs)
 
         obj.times = times
         obj.timesteps = timesteps
         obj.parameters = Parameters.from_file(files[0])
 
         return obj
+
+    @staticmethod
+    def array_from_string(string, format=default_format, sort_by=None, step_regex="#Step=(.*),Time=(.*)"):
+        dims = []
+        array = np.genfromtxt(StringIO(string), dtype=format, comments="#")
+        if len(array) != 0:
+            total = len(array)
+            for key in sort_by:
+                array = np.sort(array, order=key)
+                dims.append(total / np.argmax(array[key] != array[key][0]))
+
+            dims.reverse()
+            array = array.reshape([1] + dims)
+
+            comment = string.split("\n")[0]
+            comment = comment.replace(" ","")
+
+            result = re.search(step_regex, comment)
+
+            timestep = int(result.groups()[0])
+            time = float(result.groups()[1])
+
+            return time, timestep, array
+        else:
+            return None, None, None
 
