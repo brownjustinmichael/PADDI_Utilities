@@ -21,8 +21,8 @@ fig, axis = plt.subplots(1, 1, figsize=(6, 4))
 color = "blue"
 
 for dataframe in data:
-	axis.plot(dataframe["kz"], dataframe[args.field], alpha=0.3, color=color)
-axis.plot(data[-1]["kz"], dataframe[args.field], color=color)
+	axis.plot(dataframe["k0"], dataframe[args.field], alpha=0.3, color=color)
+axis.plot(data[-1]["k0"], dataframe[args.field], color=color)
 
 # axis.set_ylabel("\mbox{%s}" % args.field)
 axis.set_yscale("log")

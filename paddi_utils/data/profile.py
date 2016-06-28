@@ -74,7 +74,7 @@ class Profiles(np.ndarray):
     @staticmethod
     def array_from_string(string, format=default_format, sort_by=None, step_regex="#Step=(.*),Time=(.*)"):
         dims = []
-        array = np.genfromtxt(StringIO(string), dtype=format, comments="#")
+        array = np.genfromtxt(StringIO(unicode(string, "utf-8")), dtype=format, comments="#")
         if len(array) != 0:
             total = len(array)
             for key in sort_by:
