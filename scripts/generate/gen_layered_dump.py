@@ -9,8 +9,8 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument("--parameter_file", default="parameter_file")
 parser.add_argument("--dump_file", default=None)
-parser.add_argument("--number", default=4, dtype=int)
-parser.add_argument("--convolve", default=5, dtype=int)
+parser.add_argument("--number", default=4, type=int)
+parser.add_argument("--convolve", default=5, type=int)
 
 args = parser.parse_args()
 
