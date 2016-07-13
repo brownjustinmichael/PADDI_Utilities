@@ -9,8 +9,8 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument("--parameter_file", default="parameter_file")
 parser.add_argument("--dump_file", default=None)
-parser.add_argument("--number", default=4)
-parser.add_argument("--convolve", default=5)
+parser.add_argument("--number", default=4, dtype=int)
+parser.add_argument("--convolve", default=5, dtype=int)
 
 args = parser.parse_args()
 
@@ -39,9 +39,6 @@ kz = np.array(dump["kz"]).reshape((1, 1, dump["kz"].size, 1))
 
 dump["uz"][:] = -(kx * dump["ux"][:] + ky * dump["uy"][:]) / kz
 dump["uz"][:,:,0,:] = 0.0
-
-print(np.max(dump["uz"]))
-print(np.sum(kx * dump["ux"] + ky * dump["uy"] + kz * dump["uz"]))
 
 nz = params["max_degree_of_z_fourier_modes"] * 2
 z = np.arange(0, nz) * params["z_extent_of_the_box"] / nz
