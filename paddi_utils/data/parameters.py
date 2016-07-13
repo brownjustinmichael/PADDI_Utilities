@@ -110,12 +110,10 @@ class Parameters(dict):
         # Read the file, skipping the first skip lines
         file = open(file_name, "r")
         strings = [file.readline() for i in range(skip + len(format))][skip:]
-        print(strings[-1])
 
         # Set the parameters sequentially based on the contents of the file header
         params = {}
         for line, (key, dtype) in zip(strings, format):
-            print(line, key, dtype)
             params[key] = dtype(line.split()[-1])
 
         return cls(format=format, **params)

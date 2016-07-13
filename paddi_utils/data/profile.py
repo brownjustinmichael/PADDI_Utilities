@@ -58,10 +58,8 @@ class Profiles(np.ndarray):
             times.append(time)
             timesteps.append(timestep)
             if data is None:
-                print(data.shape)
                 data = array
             else:
-                print(data.shape, array.shape)
                 data = np.concatenate([data, array])
             file_string = ""
 
