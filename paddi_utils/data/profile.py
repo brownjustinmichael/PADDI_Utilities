@@ -58,28 +58,33 @@ class Profiles(np.ndarray):
             times.append(time)
             timesteps.append(timestep)
             if data is None:
+                print(data.shape)
                 data = array
             else:
+                print(data.shape, array.shape)
                 data = np.concatenate([data, array])
             file_string = ""
 
-        obj = np.ndarray.__new__(cls, data.shape, dtype=data.dtype, buffer=data.data, *args, **kwargs)
+        if data is None:
+            obj = np.ndarray.__new__(cls, [])
+        else:
+            obj = np.ndarray.__new__(cls, data.shape, dtype=data.dtype, buffer=data.data, *args, **kwargs)
 
         obj.times = times
         obj.timesteps = timesteps
-        obj.parameters = Parameters.from_file(files[0])
+        obj.parameters = Parameters.from_header(files[0])
 
         return obj
 
     @staticmethod
     def array_from_string(string, format=default_format, sort_by=None, step_regex="#Step=(.*),Time=(.*)"):
         dims = []
-        array = np.genfromtxt(StringIO(unicode(string, "utf-8")), dtype=format, comments="#")
+        array = np.genfromtxt(StringIO(str(string)), dtype=format, comments="#")
         if len(array) != 0:
             total = len(array)
             for key in sort_by:
                 array = np.sort(array, order=key)
-                dims.append(total / np.argmax(array[key] != array[key][0]))
+                dims.append(total // np.argmax(array[key] != array[key][0]))
 
             dims.reverse()
             array = array.reshape([1] + dims)

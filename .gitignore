@@ -1,0 +1,8 @@
+docs/doctrees/*
+docs/doctrees/*/*
+docs/html/*
+docs/html/*/*
+
+paddi_utils/__pycache__/*
+paddi_utils/*/__pycache__/*
+paddi_utils.egg-info/*

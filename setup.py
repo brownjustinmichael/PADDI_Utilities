@@ -11,6 +11,6 @@ setup(name='paddi_utils',
       author_email='jumbrown@ucsc.edu',
       license='MIT',
       packages=['paddi_utils'],
-      install_requires=["matplotlib","sqlalchemy","numpy","pandas","celery"],
+      install_requires=["matplotlib","sqlalchemy","numpy","pandas","celery","f90nml"],
       scripts=scripts,
       zip_safe=False)

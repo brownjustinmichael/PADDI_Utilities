@@ -9,17 +9,17 @@ parser = PlotArgumentParser()
 args = parser.parse_args()
 
 # Construct the Diagnostic data object
-diagnostic_data = Diagnostic(glob.glob("OUT*"))
-spectral_data = Spectra(glob.glob("Z_SPEC*"))
-profile_data = Profiles(glob.glob("ZPROF*"))
+diagnostic_data = Diagnostic(sorted(glob.glob("OUT*")))
+spectral_data = Spectra(sorted(glob.glob("Z_SPEC*")))
+profile_data = Profiles(sorted(glob.glob("ZPROF*")))
 
 fig = plt.figure(figsize=(18, 10))
 
 temp_axis = plt.subplot2grid((3, 4), (0, 0), colspan=2)
 chem_axis = plt.subplot2grid((3, 4), (1, 0), colspan=2, sharex=temp_axis)
 temp_spec_axis = plt.subplot2grid((3, 4), (0, 2))
-chem_spec_axis = plt.subplot2grid((3, 4), (1, 2), sharex=temp_spec_axis)
-u_spec_axis = plt.subplot2grid((3, 4), (2, 2), sharex=temp_spec_axis)
+chem_spec_axis = plt.subplot2grid((3, 4), (1, 2), sharex=temp_spec_axis, sharey=temp_spec_axis)
+u_spec_axis = plt.subplot2grid((3, 4), (2, 2), sharex=temp_spec_axis, sharey=temp_spec_axis)
 temp_prof_axis = plt.subplot2grid((3, 4), (0, 3))
 chem_prof_axis = plt.subplot2grid((3, 4), (1, 3), sharey=temp_prof_axis)
 

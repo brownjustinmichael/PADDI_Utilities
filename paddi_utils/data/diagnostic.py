@@ -3,44 +3,17 @@ import glob
 import numpy as np
 import pandas as pd
 
-class Parameters(object):
-    default_format = [("thermal_buoyancy", np.float),
-                      ("chemical_buoyancy", np.float),
-                      ("viscous_diffusion", np.float),
-                      ("thermal_diffusion", np.float),
-                      ("compositional_diffusion", np.float),
-                      ("thermal_stratification", np.float),
-                      ("chemical_stratification", np.float),
-                      ("length", np.float),
-                      ("width", np.float),
-                      ("height", np.float),
-                      ("CFL", np.float),
-                      ("timestep_max", np.float),
-                      ("timestep_init", np.float),
-                      ("Lmax", np.int),
-                      ("Mmax", np.int),
-                      ("Nmax", np.int),
-                      ("Nx", np.int),
-                      ("Ny", np.int),
-                      ("Nz", np.int),
-                      ("number_of_tasks_1st_transpose", np.int),
-                      ("number_of_tasks_2nd_transpose", np.int)]
-
-    """Read the parameter information for the run"""
-    def __init__(self, parameter_strings, format=default_format):
-        super(Parameters, self).__init__()
-        for line, (key, dtype) in zip(parameter_strings[12:33], format):
-            setattr(self, key, dtype(line.split()[-1]))
-
-    @classmethod
-    def from_file(cls, file_name, format=default_format):
-        file = open(file_name, "r")
-        string = [file.readline() for i in range(41)]
-        return cls(string, format=format)
-
+from paddi_utils.data.parameters import Parameters
 
 class Diagnostic(pd.DataFrame):
-    """A class used to read the Diagnostic data from a PADDI run, usually OUT*"""
+    """
+    A class used to read the Diagnostic data from a PADDI run, usually OUT*
+    
+    :type files: :class:`list` of :class:`str`
+    :param files: A list of diagnostic file names to open in time order
+    :type format: :class:`list` of :class:`tuple` of the form (:class:`str`, :class:`type`)
+    :param format: The column--type pairs of the data to be read from the diagnostic file; if `None`, instead use :attr:`Diagnostic.default_format`
+    """
 
     default_format = [("istep", np.int),
                       ("t", np.float),
@@ -50,7 +23,7 @@ class Diagnostic(pd.DataFrame):
                       ("TEMPrms", np.float),
                       ("CHEMrms", np.float),
                       ("flux_Temp", np.float),
-                      ("flux_Chem", np.float),
+                      ("flux_comp", np.float),
                       ("Temp_min", np.float),
                       ("Temp_max", np.float),
                       ("Chem_min", np.float),
@@ -76,14 +49,20 @@ class Diagnostic(pd.DataFrame):
                       ("VORTYrms", np.float),
                       ("VORTZrms", np.float),
                       ("diss_Temp", np.float),
-                      ("diss_Chem", np.float)]
+                      ("diss_comp", np.float)]
+    """The default format of a diagnostic file, given as a list of column--type pairs"""
 
-    def __init__(self, files, format=default_format):
+    def __init__(self, files, format=None):
+        if format is None:
+            format = Diagnostic.default_format
+
+        # Construct an array from each file
         file_data = []
         for file_name in files:
             array = np.genfromtxt(file_name, dtype=format)
             file_data.append(pd.DataFrame(array))
 
+        # If more than one array was constructed, concatenate the arrays
         if len(file_data) > 1:
             super(Diagnostic, self).__init__(pd.concat(file_data))
         elif len(file_data) == 1:
@@ -91,8 +70,5 @@ class Diagnostic(pd.DataFrame):
         else:
             super(Diagnostic, self).__init__()
 
-        self.parameters = Parameters.from_file(files[0])
-
-
-
-
+        # Gather parameters from the first file
+        self.parameters = Parameters.from_header(files[0])
