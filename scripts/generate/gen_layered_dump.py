@@ -14,7 +14,6 @@ parser.add_argument("--convolve", default=5)
 
 args = parser.parse_args()
 
-old_dump = Dump.from_file("DUMP01.cdf")
 params = Parameters.from_file(args.parameter_file)
 
 if args.dump_file is None:
