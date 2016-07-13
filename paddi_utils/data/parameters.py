@@ -111,7 +111,7 @@ class Parameters(object):
         :return: An instance of the Parameters class built from the ASCII header
         """
         if format is None:
-            format = default_format
+            format = cls.default_format
 
         # Read the file, skipping the first skip lines
         file = open(file_name, "r")
