@@ -71,9 +71,9 @@ for key, axis in profiles:
 	axis.set_ylabel("z")
 	axis.set_xlabel(key)
 
-rho = (-profile_data.parameters.thermal_buoyancy / profile_data.parameters.viscous_diffusion * profile_data["Temp_avg"]
-      + profile_data.parameters.chemical_buoyancy / profile_data.parameters.viscous_diffusion * profile_data["Chem_avg"]
-      + (-profile_data.parameters.thermal_stratification + profile_data.parameters.chemical_stratification) * profile_data["z1"])
+rho = (-profile_data.parameters["B_therm"] / profile_data.parameters["D_visc"] * profile_data["Temp_avg"]
+      + profile_data.parameters["B_comp"] / profile_data.parameters["D_visc"] * profile_data["Chem_avg"]
+      + (-profile_data.parameters["S_therm"] + profile_data.parameters["S_comp"]) * profile_data["z1"])
 
 for i, frame in enumerate(profile_data):
 	rho_prof_axis.plot(rho[i], frame["z1"], alpha = 0.1, color="black")

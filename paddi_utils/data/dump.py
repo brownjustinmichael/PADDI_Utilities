@@ -24,21 +24,30 @@ class Dump(nc.Dataset):
 		super(Dump, self).__init__(file_name, mode=mode, format="NETCDF3_64BIT", *args, **kwargs)
 
 		if mode is "w":
-			kx = self.createDimension("l", parameters.max_degree_of_x_fourier_modes + 1)
-			ky = self.createDimension("m", parameters.max_degree_of_y_fourier_modes * 2)
-			kz = self.createDimension("n", parameters.max_degree_of_z_fourier_modes * 2)
+			kx = self.createDimension("l", parameters["max_degree_of_x_fourier_modes"] + 1)
+			ky = self.createDimension("m", parameters["max_degree_of_y_fourier_modes"] * 2)
+			kz = self.createDimension("n", parameters["max_degree_of_z_fourier_modes"] * 2)
 			ri = self.createDimension("ri", 2)
 
-			for parameter, type in parameters:
-				if type is np.float:
-					type_string = "f8"
-				elif type is np.int:
-					type_string = "i4"
+			for parameter in parameters:
+				dtypes = [dtype for name, dtype in parameters.format if name == parameter]
+				if len(dtypes) > 0:
+					dtype = dtypes[0]
 				else:
-					raise TypeError("Unrecognized type")
-				if parameter in Parameters.param_translation:
-					self.createVariable(Parameters.param_translation[parameter], type_string, tuple())
-					self[Parameters.param_translation[parameter]][:] = getattr(parameters, parameter)
+					dtype = type(parameters[parameter])
+
+				if parameter in parameters.param_translation:
+					parameter = parameters.param_translation[parameter]
+
+				if dtype is int:
+					self.createVariable(parameter, "i4", tuple())
+				elif dtype is float:
+					self.createVariable(parameter, "i4", tuple())
+				else:
+					print("WARNING: Unknown datatype %s for %s, skipping" % (str(dtype), parameter))
+					continue
+
+				self[parameter][:] = parameters[parameter]
 
 			self.createVariable("kx", "f8", ("l",))
 			kx0 = 2.0 * np.pi / self["Gammax"][:]
@@ -60,9 +69,9 @@ class Dump(nc.Dataset):
 			for var in ["Chem", "Temp", "ux", "uy", "uz"]:
 				self.createVariable(var, "f8", ("m", "l", "n", "ri"))
 		else:
-			for parameter, type in parameters:
+			for parameter in parameters:
 				if parameter in Parameters.param_translation:
-					if self[Parameters.param_translation[parameter]][:] != getattr(parameters, parameter):
+					if self[Parameters.param_translation[parameter]][:] != parameters[parameter]:
 						raise RuntimeError("Parameter mismatch in dump file construction")
 
 	@classmethod

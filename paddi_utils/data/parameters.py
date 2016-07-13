@@ -1,7 +1,7 @@
 import numpy as np
 import f90nml
 
-class Parameters(object):
+class Parameters(dict):
     """
     Read the parameter information for the a PADDI run
 
@@ -30,10 +30,7 @@ class Parameters(object):
                       ("ny", np.int),
                       ("nz", np.int),
                       ("number_of_tasks_1st_transpose", np.int),
-                      ("number_of_tasks_2nd_transpose", np.int),
-                      ("istep", np.int),
-                      ("dt", np.float),
-                      ("time", np.float)]
+                      ("number_of_tasks_2nd_transpose", np.int)]
     """A default format for PADDI runs; this can be overloaded if needed"""
 
     nc_format = [("thermal_buoyancy_param", np.float),
@@ -60,11 +57,11 @@ class Parameters(object):
                          "thermal_diffusion_coeff": "D_therm",
                          "compositional_diffusion_coeff": "D_comp",
                          "thermal_stratif_param": "S_therm",
-                         "compositional_stratif_param": "S_comp",
-                         "istep": "istep",
-                         "time": "time",
-                         "dt": "dt"}
-    """A dictionary that translates from the parameter names in the parameter file (keys) and the names in the netCDF files (values)"""
+                         "compositional_stratif_param": "S_comp"}
+    """A dictionary that translates from the parameter names in the parameter file (keys) to those in the netCDF files (values)"""
+
+    inv_translation = {value: key for key, value in param_translation.items()}
+    """A dictionary that translates from the names in the netCDF files (keys) to those in the parameter file (values)"""
 
     def __init__(self, format=None, **kwargs):
         if format is None:
@@ -73,12 +70,15 @@ class Parameters(object):
         super(Parameters, self).__init__()
         self.format = format
 
-        self.istep = 0
-        self.dt = 0.0
-        self.time = 0.0
+        self["istep"] = 0
+        self["time"] = 0.0
+        if "initial_time_step_length" in kwargs:
+            self["dt"] = kwargs["initial_time_step_length"]
+        else:
+            self["dt"] = 5.0e-7
 
         for key in kwargs:
-            setattr(self, key, kwargs[key])
+            self[key] = kwargs[key]
 
         factor = 3
         if "dealias" in kwargs:
@@ -87,13 +87,7 @@ class Parameters(object):
 
         for direction in ["x", "y", "z"]:
             if "n" + direction not in kwargs:
-                setattr(self, "n" + direction, kwargs["max_degree_of_%s_fourier_modes" % direction] * factor)
-
-        for key, type in format:
-            try:
-                getattr(self, key)
-            except AttributeError:
-                raise RuntimeError("Parameters not initialized correctly, missing %s" % key)
+                self["n" + direction] = kwargs["max_degree_of_%s_fourier_modes" % direction] * factor
 
     @classmethod
     def from_header(cls, file_name, format=None, skip=12):
@@ -169,11 +163,12 @@ class Parameters(object):
             translation = cls.param_translation
 
         params = {}
-        for key, dtype in format:
-            if key in Parameters.param_translation:
-                params[key] = dataset[cls.param_translation[key]][:]
-            else:
-                params[key] = dataset[key][:]
+        for var in dataset.variables:
+            if dataset[var].shape == tuple():
+                if var in cls.inv_translation:
+                    params[cls.inv_translation[var]] = dataset[var][:]
+                else:
+                    params[var] = dataset[var][:]
 
         # A few paramaters tend to be mising in the netCDF files, but they can be filled in
         params["max_degree_of_x_fourier_modes"] = dataset.dimensions["l"].size - 1
@@ -192,11 +187,12 @@ class Parameters(object):
         
         return cls(format=cls.default_format, **params)
 
-    def __iter__(self):
-        """
-        Iterate over the format, giving parameter--type pairs
+    def __getitem__(self, index):
+        if index not in self and index in self.inv_translation:
+            index = self.inv_translation[index]
+        return super(Parameters, self).__getitem__(index)
 
-        :return type: :class:`iter`
-        :return: An iterator over the parameter--type tuple pairs
-        """
-        return iter(self.format)
+    def __setitem__(self, index, value):
+        if index not in self and index in self.inv_translation:
+            index = self.inv_translation[index]
+        super(Parameters, self).__setitem__(index, value)
