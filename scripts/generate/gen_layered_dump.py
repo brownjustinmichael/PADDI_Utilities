@@ -46,12 +46,9 @@ layer = (np.floor(z * args.number / params["z_extent_of_the_box"]))
 layer *= params["z_extent_of_the_box"] / args.number
 layer = (signal.convolve(layer, signal.boxcar(args.convolve), mode="same") / args.convolve)[:dump["kz"].size]
 z = z[:dump["kz"].size]
-print(layer)
-print(params["thermal_stratif_param"] * (layer - z))
 
 thermal = np.fft.fft(params["thermal_stratif_param"] * (layer - z)) / (dump["kz"].size)
 compositional = np.fft.fft(params["compositional_stratif_param"] * (layer - z)) / (dump["kz"].size)
-print(len(thermal))
 
 thermal = np.array([[np.array([np.real(thermal), np.imag(thermal)]).T]])
 compositional = np.array([[np.array([np.real(compositional), np.imag(compositional)]).T]])
