@@ -23,7 +23,7 @@ class Diagnostic(pd.DataFrame):
                       ("TEMPrms", np.float),
                       ("CHEMrms", np.float),
                       ("flux_Temp", np.float),
-                      ("flux_comp", np.float),
+                      ("flux_Chem", np.float),
                       ("Temp_min", np.float),
                       ("Temp_max", np.float),
                       ("Chem_min", np.float),
@@ -49,7 +49,7 @@ class Diagnostic(pd.DataFrame):
                       ("VORTYrms", np.float),
                       ("VORTZrms", np.float),
                       ("diss_Temp", np.float),
-                      ("diss_comp", np.float)]
+                      ("diss_Chem", np.float)]
     """The default format of a diagnostic file, given as a list of column--type pairs"""
 
     def __init__(self, files, format=None):
