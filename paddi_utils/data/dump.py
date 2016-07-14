@@ -42,7 +42,7 @@ class Dump(nc.Dataset):
 				if dtype is int:
 					self.createVariable(parameter, "i4", tuple())
 				elif dtype is float:
-					self.createVariable(parameter, "i4", tuple())
+					self.createVariable(parameter, "f8", tuple())
 				else:
 					print("WARNING: Unknown datatype %s for %s, skipping" % (str(dtype), parameter))
 					continue
