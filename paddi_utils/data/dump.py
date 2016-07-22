@@ -56,12 +56,12 @@ class Dump(nc.Dataset):
 			self.createVariable("ky", "f8", ("m",))
 			ky0 = 2.0 * np.pi / self["Gammay"][:]
 			self["ky"][:ky.size // 2 + 1] = np.arange(0.0, ky0 * (ky.size // 2 + 1), ky0)
-			self["ky"][ky.size // 2 + 1:] = np.arange(-ky0 * (ky.size // 2 - 1), 0.0, ky0)
+			self["ky"][ky.size // 2 + 1:] = ky0 * np.array(range(-(ky.size // 2 - 1), 0))
 			
 			self.createVariable("kz", "f8", ("n",))
 			kz0 = 2.0 * np.pi / self["Gammaz"][:]
 			self["kz"][:kz.size // 2 + 1] = np.arange(0.0, kz0 * (kz.size // 2 + 1), kz0)
-			self["kz"][kz.size // 2 + 1:] = np.arange(-kz0 * (kz.size // 2 - 1), 0.0, kz0)
+			self["kz"][kz.size // 2 + 1:] = kz0 * np.array(range(-(kz.size // 2 - 1), 0))
 
 			self.createVariable("ri", "i4", ("ri",))
 			self["ri"][:] = [0, 1]
