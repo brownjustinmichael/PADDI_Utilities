@@ -19,7 +19,7 @@ class Dump(nc.Dataset):
 
 	def __init__(self, parameters, file_name=None, mode="w", *args, **kwargs):
 		if file_name is None:
-			file_name = parameters.name_of_input_restart_file
+			file_name = parameters["name_of_input_restart_file"]
 
 		super(Dump, self).__init__(file_name, mode=mode, format="NETCDF3_64BIT", *args, **kwargs)
 
