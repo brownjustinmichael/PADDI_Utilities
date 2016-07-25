@@ -5,7 +5,7 @@ from sympy.solvers import solve
 from sympy import Symbol, I, E, diff, Derivative, N
 from sympy.physics.vector import ReferenceFrame, Vector, divergence, gradient
 
-from paddi_utils.data import Parameters
+from paddi_utils.data import Parameters, Dump
 
 # Read any parameters from the command line
 parser = argparse.ArgumentParser()
