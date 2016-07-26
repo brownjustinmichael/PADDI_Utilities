@@ -7,7 +7,21 @@ from paddi_utils.data.parameters import Parameters
 
 class Diagnostic(pd.DataFrame):
     """
-    A class used to read the Diagnostic data from a PADDI run, usually OUT*
+    A class used to read the Diagnostic data from a PADDI run, usually OUT*. This class is designed to behave exactly as the :class:`pandas.core.frame.DataFrame` class, so all of its members are accessible here.
+
+    To access the attributes of a PADDI diagnostic file (e.g., "OUT01"), construct a :class:`.Diagnostic` object.::
+
+        import glob
+        from paddi_utils.data import Diagnostic
+
+        # Load the object from the file
+        diagnostic = Diagnostic(["path/to/file1", "path/to/file2", ...])
+        # ... or ...
+        diagnostic = Diagnostic(glob.glob("location/of/files*"))
+
+        # Index the Diagnostic object like a pandas dataframe
+        diagnostic["flux_Chem"][100:]
+        diagnostic.iloc[100:]["flux_Chem"]
     
     :type files: :class:`list` of :class:`str`
     :param files: A list of diagnostic file names to open in time order

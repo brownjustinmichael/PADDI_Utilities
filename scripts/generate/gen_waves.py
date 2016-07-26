@@ -1,3 +1,7 @@
+"""
+This script generates a spectrum of wave modes and puts them into a fortran-readable file.
+"""
+
 import argparse
 
 import numpy as np
@@ -66,6 +70,7 @@ momentum = I * ang * u + gradient(p, R) - B_therm * temp * R.z + B_comp * chem *
 temperature = I * ang * temp + S_therm * u.dot(R.z) - D_therm * divergence(gradient(temp, R), R)
 composition = I * ang * chem + S_comp * u.dot(R.z) - D_comp * divergence(gradient(chem, R), R)
 
+# Solve the equations
 # print(solve(temperature, "T"))
 subT = solve(temperature, "T")[0]
 # print(solve(composition, "C"))
@@ -82,21 +87,23 @@ subUy = solve(momentum.dot(R.y).subs(P, subP), "Uy")[0]
 # print(solve(solve(continuity, "Uz")[0].subs("Ux", subUx).subs("Uy", subUy) / Symbol("Uz") - 1, "ang"))
 ang = solve(solve(continuity, "Uz")[0].subs("Ux", subUx).subs("Uy", subUy) / Symbol("Uz") - 1, "ang")[1]
 
+# Create a distribution of frequencies
 freq = 10.0 ** np.arange(-5,5,0.01)
 dist = (freq ** -2) / 1.0e3
 
-print(dist)
-
+# Open the output file
 f = open(args.out_file, "w")
 
 angs = []
 
+# Create the spectral dimensions for the file
 d = Dump(params)
 
 kx = d["kx"]
 ky = d["ky"]
 kz = d["kz"]
 
+# Generate n_modes worth of wave modes spanning parameter space
 q = 0
 while q < args.n_modes:
 	i = np.floor(np.random.rand() * kx.size)
@@ -105,6 +112,7 @@ while q < args.n_modes:
 	sign = np.floor(np.random.rand() * 2)
 	sign = 1 if sign > 0 else -1
 
+	# Filter out any modes that cannot exist or that have wavelengths smaller than the limit provided
 	if i == 0 and j == 0:
 		continue
 
@@ -116,14 +124,11 @@ while q < args.n_modes:
 
 	print(args.limit)
 	if 2.0 * np.pi / abs(kz[k]) < args.limit:
-		print("WAVELENGTH: ", 2.0 * np.pi / abs(kz[k]))
 		continue
 
 	q += 1
 
-	print(i, j, k)
-	print(2.0 * np.pi / kx[i], 2.0 * np.pi / ky[j], 2.0 * np.pi / kz[k])
-
+	# Use the equation results with the new parameters to get the actual values
 	subs = (("ang", ang * sign), 
 		    ("kx", kx[i]), 
 		    ("ky", ky[j]), 
@@ -136,10 +141,10 @@ while q < args.n_modes:
 	ang_value = ang.subs(subs) * sign
 	angs.append(float(ang_value))
 	Uz = dist[np.argmax(freq > abs(ang_value))]
-	print(ang_value, Uz)
 
 	subs += (("Uz", Uz),)
 
+	# Print to the file in a format that fortran can read
 	formats = (ang_value, 
 		       i, j, k, 
 		       np.real(complex(subUx.subs(subs))),
@@ -156,12 +161,3 @@ while q < args.n_modes:
 	f.write(("%f " + "%i " * 3 + "( %f , %f ) " * 5 + "\n") % formats)
 
 f.close()
-
-import matplotlib.pyplot as plt
-
-# hist, bin_edges = np.histogram(angs)
-
-# plt.plot(bin_edges[:-1], hist)
-
-# plt.show()
-# plt.show()

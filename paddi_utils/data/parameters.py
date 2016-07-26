@@ -3,7 +3,15 @@ import f90nml
 
 class Parameters(dict):
     """
-    Read the parameter information for the a PADDI run
+    Read the parameter information for the a PADDI run. This contains the parameters used for a particular run::
+
+        from paddi_utils.data import Parameters
+
+        # Load the object from the file
+        params = Parameters("location/of/parameter_file")
+
+        # Parameters are stored as attributes
+        params.max_degrees_of_x_fourier_modes
 
     :type format: :class:`list` of :class:`tuple` of the form (:class:`str`, :class:`type`)
     :param format: The parameter--type pairs of the data to be contained within the Parameters object; if `None`, instead use :attr:`Parameters.default_format`
@@ -31,7 +39,7 @@ class Parameters(dict):
                       ("nz", np.int),
                       ("number_of_tasks_1st_transpose", np.int),
                       ("number_of_tasks_2nd_transpose", np.int)]
-    """A default format for PADDI runs; this can be overloaded if needed"""
+    """A default format for PADDI runs; this can be overwritten if needed"""
 
     nc_format = [("thermal_buoyancy_param", np.float),
                  ("compositional_buoyancy_param", np.float),
@@ -46,7 +54,7 @@ class Parameters(dict):
                  ("istep", np.int),
                  ("dt", np.float),
                  ("time", np.float)]
-    """A default format for reading netcdf files; this can be overloaded if needed"""
+    """A default format for reading netcdf files; this can be overwritten if needed"""
 
     param_translation = {"x_extent_of_the_box": "Gammax",
                          "y_extent_of_the_box": "Gammay",
@@ -64,12 +72,14 @@ class Parameters(dict):
     """A dictionary that translates from the names in the netCDF files (keys) to those in the parameter file (values)"""
 
     def __init__(self, format=None, **kwargs):
+        # Use the default format if none is given
         if format is None:
             format = Parameters.default_format
 
         super(Parameters, self).__init__()
         self.format = format
 
+        # Set some of the generally unprovided parameters
         self["istep"] = 0
         self["time"] = 0.0
         if "initial_time_step_length" in kwargs:
@@ -77,14 +87,17 @@ class Parameters(dict):
         else:
             self["dt"] = 5.0e-7
 
+        # Copy any parameters that appear explicitly in the keyword arguments
         for key in kwargs:
             self[key] = kwargs[key]
 
+        # Determine the correct factor for the physical dimensions
         factor = 3
         if "dealias" in kwargs:
             if not kwargs["dealias"]:
                 factor = 4
 
+        # Generate the physical dimensions
         for direction in ["x", "y", "z"]:
             if "n" + direction not in kwargs:
                 self["n" + direction] = kwargs["max_degree_of_%s_fourier_modes" % direction] * factor
@@ -180,17 +193,38 @@ class Parameters(dict):
         params["cfl_safety_factor"] = 0.0
         params["maximum_time_step_length"] = 0.0
         params["initial_time_step_length"] = 0.0
-        params["number_of_tasks_1st_transpose"] = 0
-        params["number_of_tasks_2nd_transpose"] = 0
+        params["number_of_tasks_1st_transpose"] = 1
+        params["number_of_tasks_2nd_transpose"] = 1
         
         return cls(format=cls.default_format, **params)
 
     def __getitem__(self, index):
+        """
+        Return the item with the given key. If the item is not present, but is in :attr:`inv_translation`, use the corresponding translation key instead. This is designed to allow for consistent treatment of netCDF files and the :class:`Parameter` class.
+
+        :type index: :class:`str`
+        :param index: The key for which to get the corresponding value
+
+        :return: The corresponding parameter value
+        """
+        # If the index is in the translation dictionary, use that key instead
         if index not in self and index in self.inv_translation:
             index = self.inv_translation[index]
+
         return super(Parameters, self).__getitem__(index)
 
     def __setitem__(self, index, value):
+        """
+        Return the item with the given key. If the item is not present, but is in :attr:`inv_translation`, use the corresponding translation key instead. This is designed to allow for consistent treatment of netCDF files and the :class:`Parameter` class.
+
+        :type index: :class:`str`
+        :param index: The key to index
+        :param value: The new value for the key
+
+        :return: The corresponding parameter value
+        """
+        # If the index is in the translation dictionary, use that key instead
         if index not in self and index in self.inv_translation:
             index = self.inv_translation[index]
+
         super(Parameters, self).__setitem__(index, value)
