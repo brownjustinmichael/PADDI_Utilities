@@ -15,7 +15,7 @@ if len(args.files) == 0:
 # Construct the Profile data object
 profile_data = Profiles(sorted(args.files))
 
-fig = plt.figure(figsize=(10, 6))
+fig, axis = plt.subplots(1, 1, figsize=(10, 6))
 
 # Construct the density field from the parameters of the system
 rho = (-profile_data.parameters["B_therm"] / profile_data.parameters["D_visc"] * profile_data["Temp_avg"]
