@@ -30,3 +30,5 @@ for i, frame in enumerate(profile_data):
 axis.plot(rho[-1], profile_data[-1]["z1"], color="red")
 axis.set_ylabel("z")
 axis.set_xlabel("rho")
+
+plt.show()
