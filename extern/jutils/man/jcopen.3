@@ -1,0 +1,32 @@
+
+     NAME
+          jcopen  - open a 'jc'-formatted file for reading/writing
+
+     FORTRAN F77 SPECIFICATION
+          integer function  jcopen(iu,magic,filename,acc)
+          integer*4 iu, magic
+          character*7 filename
+          character*1 acc
+
+     PARAMETERS
+          iu    = file unit, can range from 1 to 25
+	  magic = magic number, see 'jcmagic.h' for explanation
+          file  = filename
+          acc   = accecs, either 'r' or 'w'
+
+      RETURNS
+          magic= erverything fine 
+         -1    = error
+
+     DESCRIPTION
+          jcopen uses the C 'fopen' to open a file for reading/writing.
+          There can be up to 25 files opend at the same time.
+          For a short description of the alogorithm see jctools(3).
+
+
+     KNOWN PROBLEMS
+
+     SEE ALSO
+          jcopen, jcwinfo, jcwrite, jcskip, jcrinfo, jcread, jcback, 
+          jcclose,jctools
+

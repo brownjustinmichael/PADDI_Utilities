@@ -1,0 +1,27 @@
+
+     NAME
+          icopen, icwinfo, icwrite, icskip, icrinfo, icread, icback, 
+          icclose
+
+     DESCRIPTION
+          c-routines for reading and writing of big data-arrays
+          from a FORTRAN program. Each data-array is written as one 
+          file-record. The array is scaled on [0,65535] and each 
+          data-value is written as 2 characters (16 bit !!).
+          The resulting data-files are portable between different 
+          architectures and do not contain any redundant information.
+          Therefore compress(1) and friends does not affect the file.
+
+          As the names indicate they should replace the FORTRAN
+          open(2F), read(2f), write(2F) and close(2F).
+
+     KNOWN PROBLEMS
+          The accuracy is limited to 0.000015 times (Max.value - Min.value).
+          The filenames must be character*7.
+          There might be problems with machines who don't have 
+          a standard FORTRAN-C interface (i.e. multi-max, cray)
+
+     SEE ALSO
+          icopen, icwinfo, icwrite, icskip, icrinfo, icread, icback, 
+          icclose
+

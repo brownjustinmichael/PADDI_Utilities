@@ -1,0 +1,28 @@
+
+     NAME
+          jcclose - close a 'jc'-formatted file 
+
+     FORTRAN F77 SPECIFICATION
+          integer function  jcclose(iu)
+          integer*4 iu
+
+     PARAMETERS
+
+          INPUT:
+          iu    = file unit, can range from 1 to 25
+
+     RETURNS
+         -1     = error
+          0     = everything fine 
+
+     DESCRIPTION
+          jclose closes a file that has been opend by jcopen(3) 
+          for reading and writing with jcwrite(3), jcread(3).
+          For a short description of the alogorithm see jctools(3).
+
+     KNOWN PROBLEMS
+
+     SEE ALSO
+          jcopen, jcwinfo, jcwrite, jcskip, jcrinfo, jcread, jcback, 
+          jcclose,jctools
+

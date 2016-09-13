@@ -1,0 +1,29 @@
+
+     NAME
+          jcopen, jcwinfo, jcwrite, jcskip, jcrinfo, jcread, jcback, 
+          jcclose
+
+     DESCRIPTION
+          c-routines for reading and writing of big data-arrays
+          from a FORTRAN program. Each data-array is written as one 
+          file-record. The array is scaled on [0,4096] and the 
+          resulting array is compressed as a grey-scale image using 
+          the 'jpeg' image compression library. This reduces the 
+          size of the data to approx. 5% of its original size.
+          The resulting data-files are portable between different 
+          architectures. 
+
+          As the names indicate they should replace the FORTRAN
+          open(2F), read(2f), write(2F) and close(2F).
+
+     KNOWN PROBLEMS
+          The accuracy is limited to 0.0002441 * (Max.value - Min.value).
+          Jpeg compression is a lossy compression therefore an additional 
+          error occures. With smooth fields compression is better.
+          There might be problems with machines who don't have 
+          a standard FORTRAN-C interface (i.e. multi-max, cray)
+
+     SEE ALSO
+          jcopen, jcwinfo, jcwrite, jcskip, jcrinfo, jcread, jcback, 
+          jcclose
+

@@ -1,0 +1,35 @@
+
+     NAME
+          icwrite - write a record  on a 'ic'-formatted file 
+
+     FORTRAN F77 SPECIFICATION
+          integer function icwrite(iu,niter,time,dt,x,nlen)
+          integer*4 iu, niter,nlen
+          real*4 time, dt, x(nlen)
+
+     PARAMETERS
+
+         INPUT:
+         iu     = file unit, can range from 1 to 25
+         niter  = numer of model iteration
+         time   = time of time  step
+         dt     = time step 
+         x      = data vector
+         nlen   = lenght of data vector
+
+     RETURNS
+         0      =  fine
+
+     DESCRIPTION
+         icwrite writes the data vector x of length xlen to the 
+         file with unit iu. The data can also be on a array x(nlen1,nlen2)
+         with nlen = nlen1*nlen2. 
+         For a short description of the alogorithm see ictools(3).
+
+     KNOWN PROBLEMS
+         The filenames must be character*7.
+
+     SEE ALSO
+         icopen, icwinfo, icwrite, icskip, icrinfo, icread, icback, 
+         icclose,ictools
+

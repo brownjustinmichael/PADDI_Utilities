@@ -1,0 +1,37 @@
+
+     NAME
+          icrinfo - read the information record  from  a 'ic'-formatted 
+                    file 
+
+     FORTRAN F77 SPECIFICATION
+          integer function icrinfo(iu,ra,ras,iddc,rle,numx,numy)
+          integer*4 iu, iddc, numx, numy
+          real*4    ra, ras, rle
+
+     PARAMETERS
+
+         INPUT:
+         iu     = file unit, can range from 1 to 25
+
+         OUTPUT:
+         ra     = thermal Rayleigh number
+         ras    = chemical Rayleigh number
+         niter  = numer of model iteration
+         iddc   = double-diffusive convection 0 = .false., 1 = .true.
+         rle    = the lewis number
+         numx   = number of point in x-direction
+         numy   = number of point in y-direction
+
+     RETURNS
+         0      =  fine
+
+     DESCRIPTION
+         icrinfo reads the  information record from a 'ic' data-file.
+
+     KNOWN PROBLEMS
+         iddc is an integer and not a logical variable
+
+     SEE ALSO
+         icopen, icwinfo, icwrite, icskip, icrinfo, icread, icback, 
+         icclose,ictools
+

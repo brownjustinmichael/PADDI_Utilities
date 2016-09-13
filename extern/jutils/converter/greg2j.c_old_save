@@ -1,0 +1,173 @@
+#include <stdio.h>
+#include <sys/stat.h>
+#ifndef sun
+#include <getopt.h>
+#else
+#include <stdlib.h>
+#endif
+#include <math.h>
+#include <unistd.h>
+
+#include <jpeglib.h>
+
+#include "jcmagic.h"
+
+#ifdef USE12B
+#define MAXVAL 4095  /*4095*/
+#define JDATA  short /*short or unsigned char*/
+#else
+#define MAXVAL 255  
+#define JDATA  unsigned char /*short or unsigned char*/
+#endif
+
+int xdim, ydim, zdim, niter, iddc;
+float mtime, dt, ra, ras, le;
+float *data=NULL, *ax=NULL, *ay=NULL;    /* a pointer to the 3d volume of data */
+char inp_file[80], out_file[80];		/* name of input file */
+struct stat o_data_file, s_data_file;
+
+int limit=0, dirty=0;
+
+MAIN__() {}
+__main() {}
+
+main(argc, argv)
+int argc;
+char *argv[];
+{
+
+	int i, ierr, errfac, magic=77, quality=85;
+        char acc[1]="w";
+
+        FILE *fff;
+        fff = fopen("data", "w");
+
+	if (argc <= 2) {
+                fprintf(stderr," usage %s  infile outfile -q quality \n",  argv[0]);
+		exit(1);
+	}
+
+           printf(" for getopt .. \n");
+	while((i=getopt(argc,argv,"sdhq:e:q:")) != -1)
+	{
+		switch(i) {
+                case 'e':
+                        sscanf(argv[optind-1], "%d", &errfac);
+			break;
+                case 'h':
+                        exit(1);
+			break;
+                case 's':
+                        printf("Restricting temp  values to [0.,1]\n");
+                        limit = 1;
+			break;
+                case 'd':
+                        printf(" Dirty hack ... lowest level must be T=1\n");
+                        dirty = 1;
+			break;
+                case 'q':
+                        sscanf(argv[optind-1], "%i", &quality);
+                        printf(" Quality set to %i\n", quality);
+			break;
+		}
+	}
+
+		sprintf(inp_file,"%s\0",argv[argc-2]);
+		sprintf(out_file,"%s\0",argv[argc-1]);
+
+	printf(" inp_file   :  %s\n",inp_file);
+	printf(" out_file   :  %s\n",out_file);
+
+        
+           printf(" for get_greg_data .. \n");
+        get_greg_data();
+
+for(quality = 0; quality <=100; quality +=5) { 
+
+        ierr = jcopen(1,JC3D,out_file,acc);
+        ierr = jcwinfo(1, &ra, &ras, &iddc, &le, &xdim, &ydim, &zdim);
+        ierr = jcwrite(1,JPTEMP, &niter, &mtime, &dt, data, &xdim, &ydim, &zdim, &quality);
+        ierr = jcwrite(1,JPAX, &niter, &mtime, &dt, ax, &xdim, &ydim, &zdim, &quality);
+        ierr = jcwrite(1,JPAY, &niter, &mtime, &dt, ay, &xdim, &ydim, &zdim, &quality);
+        ierr = jcclose(1);
+#ifdef DUMPF
+        {
+        FILE *fff;
+        fff = fopen("laber.spec", "w");
+        for(i=0; i< xdim*ydim*zdim; i++) fprintf(fff,"%f\n", data[i]);
+        fclose(fff);
+        }
+#endif
+
+        stat(out_file,&s_data_file);
+        stat(inp_file,&o_data_file);
+        printf("  size %ik ---> %ik : compression %i \%%\n",
+                           o_data_file.st_size/1000, s_data_file.st_size/1000,
+                           100-100*(float)s_data_file.st_size/(0.75*(float)o_data_file.st_size));
+        fprintf(fff,"  %i %i %i  %f \n", quality,
+                           o_data_file.st_size/1000, s_data_file.st_size/1000,
+                           100-100*(float)s_data_file.st_size/(0.75*(float)o_data_file.st_size));
+
+         }
+
+        return(1);
+}
+
+
+
+
+get_greg_data()
+/* This subroutine will read in the greg data file. */
+{
+	int iq=0, i;
+        float xmin=100000, xmax=-1000000;
+
+	if(access(inp_file, 0)) {  
+		perror(inp_file); 
+		exit(1);
+	}
+
+	readg_(&inp_file,data, ax, ay, &xdim, &ydim, &zdim, &iq, &niter, &mtime, &ra, &dt);
+
+	if ((data = (float *) realloc(data,sizeof(float)*(xdim)*(ydim)*(zdim))) == NULL) {
+		fprintf(stderr, "%s: error, not enough memory for the data set\n",
+		   inp_file );
+		return -1;
+	}
+	if ((ax = (float *) realloc(ax,sizeof(float)*(xdim)*(ydim)*(zdim))) == NULL) {
+		fprintf(stderr, "%s: error, not enough memory for the data set\n",
+		   inp_file );
+		return -1;
+	}
+	if ((ay = (float *) realloc(ay,sizeof(float)*(xdim)*(ydim)*(zdim))) == NULL) {
+		fprintf(stderr, "%s: error, not enough memory for the data set\n",
+		   inp_file );
+		return -1;
+	}
+
+	iq = 1;
+	readg_(&inp_file,data, ax, ay, &xdim, &ydim, &zdim, &iq, &niter, &mtime, &ra, &dt);
+
+        if(dirty) for(i=0; i< xdim*ydim; i++) data[i] = 1;  
+
+                for(i=0; i< xdim*ydim*zdim; i++) {
+                           if(data[i] > xmax) xmax = data[i];
+                           if(data[i] < xmin) xmin = data[i];
+                if(limit) {
+                           if(data[i] > 1) data[i] =1.;
+                           if(data[i] < 0) data[i] =0.;
+                          }
+                  }
+            printf(" Temp min = %f max = %f ", xmin, xmax);
+            if(limit) printf(" --- > changed to 0. 1.");
+            printf("\n");
+
+       
+                              
+
+
+	return 0;
+}
+
+
+

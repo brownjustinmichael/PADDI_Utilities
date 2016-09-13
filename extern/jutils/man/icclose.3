@@ -1,0 +1,27 @@
+
+     NAME
+          icclose - close a 'ic'-formatted file 
+
+     FORTRAN F77 SPECIFICATION
+          integer function  icclose(iu)
+          integer*4 iu
+
+     PARAMETERS
+
+          INPUT:
+          iu    = file unit, can range from 1 to 25
+
+     RETURNS
+          0     = everything fine 
+
+     DESCRIPTION
+          iclose closes a file that has been opend by icopen(3) 
+          for reading and writing with icwrite(3), icread(3).
+          For a short description of the alogorithm see ictools(3).
+
+     KNOWN PROBLEMS
+
+     SEE ALSO
+          icopen, icwinfo, icwrite, icskip, icrinfo, icread, icback, 
+          icclose,ictools
+

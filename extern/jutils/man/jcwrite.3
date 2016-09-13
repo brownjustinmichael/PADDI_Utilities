@@ -1,0 +1,39 @@
+
+     NAME
+          jcwrite - write a record  on a 'jc'-formatted file 
+
+     FORTRAN F77 SPECIFICATION
+          integer function jcwrite(iu,magic,niter,time,dt,x,numx,numy,numz,quality)
+          integer*4 iu, niter,magic,numx,numy,numz,quality
+          real*4 time, dt, x(nlen)
+
+     PARAMETERS
+
+         INPUT:
+         iu     = file unit, can range from 1 to 25
+	 magic  = magic number
+         niter  = numer of model iteration
+         time   = time of time  step
+         dt     = time step 
+         x      = data vector
+         numx   = number of point in x-direction
+         numy   = number of point in y-direction
+         numz   = number of point in z-direction
+	 quality= compression factor for data-file; low 
+                  values mean high compression; usfull values 
+                  are between 15-85
+
+
+     RETURNS
+         0      =  fine
+
+     DESCRIPTION
+         jcwrite writes the data vector x of length numx*numy*numz to the 
+         file with unit iu. The data can also be on a array x(numx,numy,numz).
+
+     KNOWN PROBLEMS
+
+     SEE ALSO
+         jcopen, jcwinfo, jcwrite, jcskip, jcrinfo, jcread, jcback, 
+         jcclose,jctools
+

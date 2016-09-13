@@ -1,0 +1,67 @@
+      program cont
+      parameter (npt=300000)
+      real, dimension(:), allocatable:: temp
+      real, dimension(:), allocatable:: vx
+      real, dimension(:), allocatable:: vy
+      real, dimension(:), allocatable:: vz
+      character*70 data
+      character*1 acc
+      real ra,ras,le    
+      integer magic
+
+      data='/scratch/tmp/j__data'
+      acc='r'
+
+      ierr=jcopen(1,magic,data,acc)
+      if(ierr.le.-1) print*,'Error icopen 1 : ierr=',ierr
+
+      ierr=jcrinfo(1,ra,ras,npde,le,numx,numy,numz)
+
+      allocate(temp(numx*numy*numz))
+      allocate(vx(numx*numy*numz))
+      allocate(vy(numx*numy*numz))
+      allocate(vz(numx*numy*numz))
+
+      print*,'npde = ', npde
+      print*,'ra = ', ra
+      print*,'ras = ', ras
+      print*,'nx ny nz  ', numx,numy,numz
+
+      do i=1,3
+c..... read temp .............................. 
+      ierr=jcread(1,niter,time,0,temp(1),numx, numy, numz)
+
+      print*,' sum(temp)', sum(temp), temp(10000)
+
+c.. we could also just skip it
+      ierr=jcread(1,niter,time,0,vx(1),numx, numy, numz)
+      print*,' sum(vx)', sum(vx), vx(10000)
+c     ierr=jcskip(1,1,niter,time);
+c     ierr=jcback(1,1);
+      ierr=jcread(1,niter,time,0,vy(1),numx, numy, numz)
+      print*,' sum(vy)', sum(vy), vy(10000)
+      ierr=jcread(1,niter,time,0,vz(1),numx, numy, numz)
+      print*,' sum(vz)', sum(vz), vz(10000)
+      print*,'time=',time,' nstep =', niter, ierr
+      if(ierr == -1) stop 'ende'
+
+      enddo
+      do i=1,3
+      ierr=jcback(1,1);
+      ierr=jcback(1,1);
+      ierr=jcback(1,1);
+      ierr=jcback(1,1);
+      enddo
+
+      do i=1,3
+      ierr=jcskip(1,1,niter,time);
+      ierr=jcskip(1,1,niter,time);
+      ierr=jcskip(1,1,niter,time);
+      ierr=jcskip(1,1,niter,time);
+       print*," skipping ", niter, time
+      enddo
+
+      print*,'time=',time,' nstep =', niter
+c... and so on ... 
+      ierr=jcclose(1)
+      end

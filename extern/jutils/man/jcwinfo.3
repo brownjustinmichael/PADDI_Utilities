@@ -1,0 +1,37 @@
+
+     NAME
+          jcwinfo - write a information record  on a 'jc'-formatted 
+                    file 
+
+     FORTRAN F77 SPECIFICATION
+          integer function jcwinfo(iu,ra,ras,iddc,rle,numx,numy,numz)
+          integer*4 iu, iddc, numx, numy, numz
+          real*4    ra, ras, rle
+
+     PARAMETERS
+
+         INPUT:
+         iu     = file unit, can range from 1 to 25
+         ra     = thermal Rayleigh number
+         ras    = chemical Rayleigh number
+         niter  = numer of model iteration
+         iddc   = double-diffusive convection 0 = .false., 1 = .true.
+         rle    = the lewis number
+         numx   = number of point in x-direction
+         numy   = number of point in y-direction
+         numz   = number of point in z-direction
+
+     RETURNS
+         -1     = error
+         magic  = magic number
+
+     DESCRIPTION
+         jcwinfo writes an information record on the data-file.
+
+     KNOWN PROBLEMS
+         iddc is an integer and not a logical variable
+
+     SEE ALSO
+         jcopen, jcwinfo, jcwrite, jcskip, jcrinfo, jcread, jcback, 
+         jcclose,jctools
+

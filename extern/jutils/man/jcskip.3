@@ -1,0 +1,32 @@
+
+     NAME
+          jcskip - skip 1 or more records on a 'jc'-formatted file 
+
+     FORTRAN F77 SPECIFICATION
+          integer function jcskip(iu,nskip,niter,time)
+          integer*4 iu, niter, nskip
+          real*4 time
+
+     PARAMETERS
+
+         INPUT:
+         iu     = file unit, can range from 1 to 25
+         nskip  = number of steps to skip
+
+         OUTPUT:
+         niter  = iteration-numer of the last skiped model iteration
+         time   = iteration-time of the last skiped time  step
+
+     RETURNS
+         -1      =  error
+	 magic   = magic number
+
+     DESCRIPTION
+         jcskip skips 1 or more records on a 'jc'-formatted file.
+
+     KNOWN PROBLEMS
+
+     SEE ALSO
+         jcopen, jcwinfo, jcwrite, jcskip, jcrinfo, jcread, jcback, 
+         jcclose,jctools
+

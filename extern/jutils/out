@@ -1,0 +1,762 @@
+Binary file c__data matches
+Binary file converter/.nfs000000000151295200000002 matches
+Binary file converter/a.out matches
+Binary file converter/easyread matches
+Binary file converter/easywrite matches
+Binary file converter/greg2j matches
+Binary file converter/lall matches
+Binary file converter/lall_write matches
+Binary file converter/readlast matches
+Binary file converter/testj matches
+icback_.c:   extern FILE *fpo[];
+icback_.c:   if(fseek(fpo[*iu],(long)(-(*n)*(*len)),1) == 0) {
+Binary file icback_.o matches
+icclose_.c:   extern FILE *fpo[];
+icclose_.c:   fclose(fpo[j]);     
+Binary file icclose_.o matches
+icddopen_.c:FILE *fpo[MAXFILES];
+icddopen_.c: extern FILE *fpo[];
+icddopen_.c:    if((fpo[j] = fopen(buf2,acc)) == NULL) {
+icddopen_.c:    if((fpo[*iu] = fopen(file,acc)) == NULL) return(1);
+Binary file icddopen_.o matches
+icddwinfo_.c:extern FILE *fpo[MAXFILES];
+icddwinfo_.c:  fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d\n",
+Binary file icddwinfo_.o matches
+icddwrite_.c:  extern FILE *fpo[];
+icddwrite_.c:  fprintf(fpo[*iu],"%6d %6e %6e %6e %6e %6d\n",
+icddwrite_.c:      putc(i1,fpo[*iu]);
+icddwrite_.c:      if(*niter != -2) putc(i2,fpo[*iu]);
+icddwrite_.c:  fflush(fpo[*iu]);
+Binary file icddwrite_.o matches
+icdwinfo_.c:extern FILE *fpo[MAXFILES];
+icdwinfo_.c:  fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d\n",
+Binary file icdwinfo_.o matches
+icdwrite_.c:  extern FILE *fpo[];
+icdwrite_.c:  fprintf(fpo[*iu],"%6d %6e %6e %6e %6e %6d\n",
+icdwrite_.c:      putc(i1,fpo[*iu]);
+icdwrite_.c:      if(*niter != -2) putc(i2,fpo[*iu]);
+icdwrite_.c:  fflush(fpo[*iu]);
+Binary file icdwrite_.o matches
+icend_.c:  extern FILE *fpo[];
+icend_.c:      fseek(fpo[*iu],0,SEEK_END); 
+Binary file icend_.o matches
+icopen_.c:FILE *fpo[MAXFILES];
+icopen_.c: extern FILE *fpo[];
+icopen_.c:    if((fpo[j] = fopen(buf2,acc)) == NULL) {
+icopen_.c:    if((fpo[*iu] = fopen(file,acc)) == NULL) return(1);
+icopen_.c.save:FILE *fpo[MAXFILES];
+icopen_.c.save: extern FILE *fpo[];
+icopen_.c.save:    if((fpo[j] = fopen(buf2,acc)) == NULL) {
+icopen_.c.save:    if((fpo[*iu] = fopen(file,acc)) == NULL) return(1);
+icopen_.c_funk_mit_rons_stuff:FILE *fpo[MAXFILES];
+icopen_.c_funk_mit_rons_stuff: extern FILE *fpo[];
+icopen_.c_funk_mit_rons_stuff:    if((fpo[j] = fopen(buf2,acc)) == NULL) {
+Binary file icopen_.o matches
+icread_.c:  extern FILE *fpo[MAXFILES];
+icread_.c:  extern FILE *fpo[];
+icread_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d",&lniter,&ltime,&ldt,&xmin,&xmax,xlen))
+icread_.c:  getc(fpo[*iu]);
+icread_.c:	 i1=getc(fpo[*iu]);
+icread_.c:	 if(*niter != -2 ) i2=getc(fpo[*iu]);
+Binary file icread_.o matches
+icrinfo_.c:extern FILE *fpo[MAXFILES];
+icrinfo_.c:  fscanf(fpo[*iu],"%e %e %d %e %d %d\n",
+icrinfo_.c:/***     getc(fpo[*iu]); ***/
+Binary file icrinfo_.o matches
+icskip_.c:  extern FILE *fpo[];
+icskip_.c:  l = ftell(fpo[*iu]);
+icskip_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d",&lniter,time,&x,&x,&x,&len))
+icskip_.c:  getc(fpo[*iu]);
+icskip_.c:     for (i=0; i < len; i++) getc(fpo[*iu]);
+icskip_.c:     if(*niter != -2 ) for (i=0; i < len; i++) getc(fpo[*iu]);
+icskip_.c:  l = ftell(fpo[*iu]) - l;
+Binary file icskip_.o matches
+icwinfo_.c:extern FILE *fpo[MAXFILES];
+icwinfo_.c:  fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d\n",
+Binary file icwinfo_.o matches
+icwrite_.c:  extern FILE *fpo[];
+icwrite_.c:  fprintf(fpo[*iu],"%6d %6e %6e %6e %6e %6d\n",
+icwrite_.c:      putc(i1,fpo[*iu]);
+icwrite_.c:      if(*niter != -2) putc(i2,fpo[*iu]);
+icwrite_.c:  fflush(fpo[*iu]);
+Binary file icwrite_.o matches
+jcback_.c:   extern FILE *fpo[];
+jcback_.c:   if(fseeko(fpo[*iu],-9,SEEK_CUR) == -1) fprintf(stderr,"fseek error in jcback 0\n");
+jcback_.c:   fscanf(fpo[*iu],"%s\n", &buf2);
+jcback_.c:   if(fseeko(fpo[*iu], (off_t)(-atol(buf2) - 9), SEEK_CUR) == -1) fprintf(stderr,"fseek error in jcback 1\n");
+jcback_.c:   if((c1 = fgetc(fpo[*iu])) == EOF) return(-1);; 
+jcback_.c:   if((c2 = fgetc(fpo[*iu])) == EOF) return(-1);; 
+jcback_.c:   if(fseeko(fpo[*iu],-2,SEEK_CUR) == -1) fprintf(stderr,"fseek error in jcback 2\n");
+Binary file jcback_.o matches
+jcclose_.c:   extern FILE *fpo[];
+jcclose_.c:   if(fclose(fpo[j])  == EOF) { fprintf(stderr," error in jcclose_..\n"); return(-1);}    
+Binary file jcclose_.o matches
+jcend_.c:extern FILE *fpo[MAXFILES];
+jcend_.c:	extern FILE *fpo[];
+jcend_.c:         fseek(fpo[*iu],0,SEEK_END); 
+Binary file jcend_.o matches
+jcopen_.c:extern FILE *fpo[MAXFILES];
+jcopen_.c:	extern FILE *fpo[];
+jcopen_.c:	if((fpo[*iu] = fopen(buf2,lacc)) == NULL) {
+jcopen_.c:		if((c1 = fgetc(fpo[j])) == EOF) 
+jcopen_.c:		if((c2 = fgetc(fpo[j])) == EOF) 
+jcopen_.c:			rewind(fpo[j]);
+jcopen_.c:		fputc(74, fpo[j]); 
+jcopen_.c:		fputc(*magic, fpo[j]);
+jcopen_.c.save:extern FILE *fpo[MAXFILES];
+jcopen_.c.save:	extern FILE *fpo[];
+jcopen_.c.save:	if((fpo[*iu] = fopen(buf2,lacc)) == NULL) {
+jcopen_.c.save:		if((c1 = fgetc(fpo[j])) == EOF) 
+jcopen_.c.save:		if((c2 = fgetc(fpo[j])) == EOF) 
+jcopen_.c.save:			rewind(fpo[j]);
+jcopen_.c.save:		fputc(74, fpo[j]); 
+jcopen_.c.save:		fputc(*magic, fpo[j]);
+Binary file jcopen_.o matches
+jcread_.c:  extern FILE *fpo[MAXFILES];
+jcread_.c:extern FILE *fpo[];
+jcread_.c:   if((c1 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+jcread_.c:   if((c2 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+jcread_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d%d%d",&lniter,&ltime,&ldt,&xmin,&xmax,xdim, ydim, zdim))
+jcread_.c:  getc(fpo[*iu]);
+jcread_.c:  start_of_joep = ftello(fpo[*iu]);
+jcread_.c:  fscanf(fpo[*iu],"%s\n", buf2);
+jcread_.c:     read_JPEG_file(fpo[*iu], image_out);
+jcread_.c:        xdrstdio_create(&xdrs, fpo[*iu], XDR_DECODE);
+jcread_.c:     fseeko(fpo[*iu], start_of_joep + length_of_joep, SEEK_SET);
+jcread_.c:     fscanf(fpo[*iu],"%s\n", buf);
+jcread_.c.orgi:  extern FILE *fpo[MAXFILES];
+jcread_.c.orgi:extern FILE *fpo[];
+jcread_.c.orgi:   if((c1 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+jcread_.c.orgi:   if((c2 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+jcread_.c.orgi:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d%d%d",&lniter,&ltime,&ldt,&xmin,&xmax,xdim, ydim, zdim))
+jcread_.c.orgi:  getc(fpo[*iu]);
+jcread_.c.orgi:  start_of_joep = ftello(fpo[*iu]);
+jcread_.c.orgi:  fscanf(fpo[*iu],"%s\n", &buf2);
+jcread_.c.orgi:     read_JPEG_file(fpo[*iu], image_out);
+jcread_.c.orgi:        xdrstdio_create(&xdrs, fpo[*iu], XDR_DECODE);
+jcread_.c.orgi:      fseeko(fpo[*iu], start_of_joep + length_of_joep, SEEK_SET);
+jcread_.c.orgi:     fscanf(fpo[*iu],"%s\n", &buf);
+jcread_.c.orgi:  extern FILE *fpo[MAXFILES];
+jcread_.c.orgi:extern FILE *fpo[];
+jcread_.c.orgi:   if((c1 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+jcread_.c.orgi:   if((c2 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+jcread_.c.orgi:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d%d%d",&lniter,&ltime,&ldt,&xmin,&xmax,xdim, ydim, zdim))
+jcread_.c.orgi:  getc(fpo[*iu]);
+jcread_.c.orgi:  start_of_joep = ftello(fpo[*iu]);
+jcread_.c.orgi:  fscanf(fpo[*iu],"%s\n", &buf2);
+jcread_.c.orgi:     read_JPEG_file(fpo[*iu], image_out);
+jcread_.c.orgi:        xdrstdio_create(&xdrs, fpo[*iu], XDR_DECODE);
+jcread_.c.orgi:      fseeko(fpo[*iu], start_of_joep + length_of_joep, SEEK_SET);
+jcread_.c.orgi:     fscanf(fpo[*iu],"%s\n", &buf);
+jcread_.c_sub:  extern FILE *fpo[MAXFILES];
+jcread_.c_sub:extern FILE *fpo[];
+jcread_.c_sub:   if((c1 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+jcread_.c_sub:   if((c2 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+jcread_.c_sub:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d%d%d",&lniter,&ltime,&ldt,&xmin,&xmax,xdim, ydim, zdim))
+jcread_.c_sub:  getc(fpo[*iu]);
+jcread_.c_sub:  start_of_joep = ftello(fpo[*iu]);
+jcread_.c_sub:  fscanf(fpo[*iu],"%s\n", &buf2);
+jcread_.c_sub:     read_JPEG_file(fpo[*iu], image_out);
+jcread_.c_sub:        xdrstdio_create(&xdrs, fpo[*iu], XDR_DECODE);
+jcread_.c_sub:      fseeko(fpo[*iu], start_of_joep + length_of_joep, SEEK_SET);
+jcread_.c_sub:     fscanf(fpo[*iu],"%s\n", &buf);
+jcread_.c_sub:  extern FILE *fpo[MAXFILES];
+jcread_.c_sub:extern FILE *fpo[];
+jcread_.c_sub:   if((c1 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+jcread_.c_sub:   if((c2 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+jcread_.c_sub:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d%d%d",&lniter,&ltime,&ldt,&xmin,&xmax,xdim, ydim, zdim))
+jcread_.c_sub:  getc(fpo[*iu]);
+jcread_.c_sub:  start_of_joep = ftello(fpo[*iu]);
+jcread_.c_sub:  fscanf(fpo[*iu],"%s\n", &buf2);
+jcread_.c_sub:     read_JPEG_file(fpo[*iu], image_out, *xdim,*ydim,*zdim);
+jcread_.c_sub:        xdrstdio_create(&xdrs, fpo[*iu], XDR_DECODE);
+jcread_.c_sub:      fseeko(fpo[*iu], start_of_joep + length_of_joep, SEEK_SET);
+jcread_.c_sub:     fscanf(fpo[*iu],"%s\n", &buf);
+Binary file jcread_.o matches
+jcrinfo2_.c:extern FILE *fpo[MAXFILES];
+jcrinfo2_.c:fpos_t pos;
+jcrinfo2_.c:  fgetpos( fpo[*iu], &pos);
+jcrinfo2_.c:  if(fscanf(fpo[*iu],"%s",buf) == EOF) { fprintf(stderr," error in jcrinfo_\n"); return(-1);}
+jcrinfo2_.c:  fsetpos( fpo[*iu], &pos);
+jcrinfo2_.c:  if(fscanf(fpo[*iu],"%s %d %d %d %d %d %d",buf, 
+jcrinfo2_.c:                  for(i=0; i< lninfo; i++) fscanf(fpo[*iu],"%e ",&xx);
+jcrinfo2_.c:                  for(i=0; i< lninfo*lclen; i++)  fgetc(fpo[*iu]);
+jcrinfo2_.c:                  fgetc(fpo[*iu]); /* cr */
+jcrinfo2_.c:  for(i=0; i< *ninfo; i++) fscanf(fpo[*iu],"%e ",&finfo[i]);
+jcrinfo2_.c:  for(i=0; i< *ninfo*(lclen); i++) cinfo[i] = fgetc(fpo[*iu]);
+jcrinfo2_.c:  fgetc(fpo[*iu]); /* cr */
+Binary file jcrinfo2_.o matches
+jcrinfo_.c:extern FILE *fpo[MAXFILES];
+jcrinfo_.c:fpos_t pos;
+jcrinfo_.c:  fgetpos( fpo[*iu], &pos);
+jcrinfo_.c:  if(fscanf(fpo[*iu],"%s",buf) == EOF) { fprintf(stderr," error in jcrinfo_\n"); return(-1);}
+jcrinfo_.c:  fsetpos( fpo[*iu], &pos);
+jcrinfo_.c:  if(fscanf(fpo[*iu],"%e %e %d %e %d %d %d\n",
+Binary file jcrinfo_.o matches
+jcskip_.c:  extern FILE *fpo[MAXFILES];
+jcskip_.c:  extern FILE *fpo[];
+jcskip_.c:   if((c1 = fgetc(fpo[*iu])) == EOF) return(-1);;
+jcskip_.c:   if((c2 = fgetc(fpo[*iu])) == EOF) return(-1);;
+jcskip_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d%d%d",&lniter,&ltime,&ldt,&xmin,&xmax,&xdim, &ydim, &zdim))
+jcskip_.c:  getc(fpo[*iu]);
+jcskip_.c:  start_of_joep = ftello64(fpo[*iu]);
+jcskip_.c:  fscanf(fpo[*iu],"%s\n", &buf2);
+jcskip_.c:  if(fseeko64(fpo[*iu], xxx, SEEK_SET) != 0) fprintf(stderr," error in fseeko64\n");;
+jcskip_.c:  fscanf(fpo[*iu],"%s\n", &buf2);
+Binary file jcskip_.o matches
+jctype_.c:  extern FILE *fpo[MAXFILES];
+jctype_.c:  fpos_t start;
+jctype_.c:extern FILE *fpo[];
+jctype_.c:   fgetpos(fpo[*iu],&start);
+jctype_.c:   if((c1 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+jctype_.c:   if((c2 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+jctype_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d%d%d",&lniter,&ltime,&ldt,&xmin,&xmax,&xdim, &ydim, &zdim))
+jctype_.c:  getc(fpo[*iu]);
+jctype_.c:   fsetpos(fpo[*iu],&start);
+Binary file jctype_.o matches
+jcwinfo2_.c:extern FILE *fpo[MAXFILES];
+jcwinfo2_.c:  fprintf(fpo[*iu],"info2 %4d %4d %4d %4d %4d %4d ",
+jcwinfo2_.c:  for(i=0; i< *ninfo; i++) fprintf(fpo[*iu],"%6e ",finfo[i]);
+jcwinfo2_.c:  for(i=0; i< *ninfo*clen; i++) fputc(cinfo[i],fpo[*iu]);
+jcwinfo2_.c:  fprintf(fpo[*iu],"\n");
+Binary file jcwinfo2_.o matches
+jcwinfo_.c:extern FILE *fpo[MAXFILES];
+jcwinfo_.c:  fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d %4d\n",
+jcwinfo_.c:extern FILE *fpo[MAXFILES];
+jcwinfo_.c:     fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d %4d\n",
+Binary file jcwinfo_.o matches
+jcwrite_.c:  extern FILE *fpo[];
+jcwrite_.c:  start_of_step = ftello(fpo[*iu]);
+jcwrite_.c:   fputc(74, fpo[*iu]); fputc(*magic, fpo[*iu]);
+jcwrite_.c:  fprintf(fpo[*iu],"%6d %6e %6e %6e %6e %6d %6d %6d\n",
+jcwrite_.c:  start_of_joep = ftello(fpo[*iu]);
+jcwrite_.c:  fprintf(fpo[*iu],"%8.8i\n", 0); /** only a dummy */
+jcwrite_.c:  write_JPEG_file(fpo[*iu], image_buffer, *quality, *xdim, plist->num);
+jcwrite_.c://   for(i=0; i< 30 ; i++) fprintf(fpo[*iu], "C");
+jcwrite_.c:         xdrstdio_create(&xdrs, fpo[*iu], XDR_ENCODE);
+jcwrite_.c:  length_of_joep = ftello(fpo[*iu]) - start_of_joep;
+jcwrite_.c:  if(1) printf(" length_of_joep %d start %d ftell %d \n",length_of_joep, start_of_joep, ftello(fpo[*iu]));
+jcwrite_.c:  if(fseeko(fpo[*iu], start_of_joep, SEEK_SET) == -1) fprintf(stderr," error in fseeko\n");
+jcwrite_.c:  fprintf(fpo[*iu],"%8.8i\n", length_of_joep);                /**length info at beginning of step **/
+jcwrite_.c:  if(fseeko(fpo[*iu], start_of_joep + length_of_joep, SEEK_SET) == -1) fprintf(stderr," error in fseeko 2\n");
+jcwrite_.c:  // fprintf(fpo[*iu],"%8.8i\n", ftello(fpo[*iu]) - start_of_step); /**length info at end of step **/
+jcwrite_.c:  fprintf(fpo[*iu],"%8.8i\n", ftello(fpo[*iu]) - start_of_step); /**length info at end of step **/
+jcwrite_.c:  fflush(fpo[*iu]);
+Binary file jcwrite_.o matches
+Binary file jutils_cray.tar matches
+nixda:  extern FILE *fpo[];
+nixda:  start_of_step = ftello(fpo[*iu]);
+nixda:   fputc(74, fpo[*iu]); fputc(*magic, fpo[*iu]);
+nixda:  fprintf(fpo[*iu],"%6d %6e %6e %6e %6e %6d %6d %6d\n",
+nixda:  start_of_joep = ftello(fpo[*iu]);
+nixda:  fprintf(fpo[*iu],"%8.8i\n", 0); /** only a dummy */
+nixda:  write_JPEG_file(fpo[*iu], image_buffer, *quality, *xdim, plist->num);
+nixda://   for(i=0; i< 30 ; i++) fprintf(fpo[*iu], "C");
+nixda:         xdrstdio_create(&xdrs, fpo[*iu], XDR_ENCODE);
+nixda:  length_of_joep = ftello(fpo[*iu]) - start_of_joep;
+nixda:  if(1) printf(" length_of_joep %d start %d ftell %d \n",length_of_joep, (long)start_of_joep, ftello(fpo[*iu]));
+nixda:  if(fseeko(fpo[*iu], start_of_joep, SEEK_SET) == -1) fprintf(stderr," error in fseeko\n");
+nixda:  fprintf(fpo[*iu],"%8.8i\n", length_of_joep);                /**length info at beginning of step **/
+nixda:  if(fseeko(fpo[*iu], start_of_joep + length_of_joep, SEEK_SET) == -1) fprintf(stderr," error in fseeko 2\n");
+nixda:  // fprintf(fpo[*iu],"%8.8i\n", ftello(fpo[*iu]) - start_of_step); /**length info at end of step **/
+nixda:  fprintf(fpo[*iu],"%8.8i\n", ftello(fpo[*iu]) - start_of_step); /**length info at end of step **/
+nixda:  fflush(fpo[*iu]);
+save/icback_.c:   extern FILE *fpo[];
+save/icback_.c:   if(fseek(fpo[*iu],(long)(-(*n)*(*len)),1) == 0) {
+save/icclose_.c:   extern FILE *fpo[];
+save/icclose_.c:   fclose(fpo[j]);     
+save/icddopen_.c:FILE *fpo[MAXFILES];
+save/icddopen_.c: extern FILE *fpo[];
+save/icddopen_.c:    if((fpo[j] = fopen(buf2,acc)) == NULL) {
+save/icddopen_.c:    if((fpo[*iu] = fopen(file,acc)) == NULL) return(1);
+save/icddwinfo_.c:extern FILE *fpo[MAXFILES];
+save/icddwinfo_.c:  fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d\n",
+save/icddwrite_.c:  extern FILE *fpo[];
+save/icddwrite_.c:  fprintf(fpo[*iu],"%6d %6e %6e %6e %6e %6d\n",
+save/icddwrite_.c:      putc(i1,fpo[*iu]);
+save/icddwrite_.c:      if(*niter != -2) putc(i2,fpo[*iu]);
+save/icddwrite_.c:  fflush(fpo[*iu]);
+save/icdwinfo_.c:extern FILE *fpo[MAXFILES];
+save/icdwinfo_.c:  fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d\n",
+save/icdwrite_.c:  extern FILE *fpo[];
+save/icdwrite_.c:  fprintf(fpo[*iu],"%6d %6e %6e %6e %6e %6d\n",
+save/icdwrite_.c:      putc(i1,fpo[*iu]);
+save/icdwrite_.c:      if(*niter != -2) putc(i2,fpo[*iu]);
+save/icdwrite_.c:  fflush(fpo[*iu]);
+save/icend_.c:  extern FILE *fpo[];
+save/icend_.c:      fseek(fpo[*iu],0,SEEK_END); 
+save/icopen_.c:FILE *fpo[MAXFILES];
+save/icopen_.c: extern FILE *fpo[];
+save/icopen_.c:    if((fpo[j] = fopen(buf2,acc)) == NULL) {
+save/icopen_.c:    if((fpo[*iu] = fopen(file,acc)) == NULL) return(1);
+save/icread_.c:  extern FILE *fpo[MAXFILES];
+save/icread_.c:  extern FILE *fpo[];
+save/icread_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d",&lniter,&ltime,&ldt,&xmin,&xmax,xlen))
+save/icread_.c:  getc(fpo[*iu]);
+save/icread_.c:	 i1=getc(fpo[*iu]);
+save/icread_.c:	 if(*niter != -2 ) i2=getc(fpo[*iu]);
+save/icrinfo_.c:extern FILE *fpo[MAXFILES];
+save/icrinfo_.c:  fscanf(fpo[*iu],"%e %e %d %e %d %d\n",
+save/icrinfo_.c:/***     getc(fpo[*iu]); ***/
+save/icskip_.c:  extern FILE *fpo[];
+save/icskip_.c:  l = ftell(fpo[*iu]);
+save/icskip_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d",&lniter,time,&x,&x,&x,&len))
+save/icskip_.c:  getc(fpo[*iu]);
+save/icskip_.c:     for (i=0; i < len; i++) getc(fpo[*iu]);
+save/icskip_.c:     if(*niter != -2 ) for (i=0; i < len; i++) getc(fpo[*iu]);
+save/icskip_.c:  l = ftell(fpo[*iu]) - l;
+save/icwinfo_.c:extern FILE *fpo[MAXFILES];
+save/icwinfo_.c:  fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d\n",
+save/icwrite_.c:  extern FILE *fpo[];
+save/icwrite_.c:  fprintf(fpo[*iu],"%6d %6e %6e %6e %6e %6d\n",
+save/icwrite_.c:      putc(i1,fpo[*iu]);
+save/icwrite_.c:      if(*niter != -2) putc(i2,fpo[*iu]);
+save/icwrite_.c:  fflush(fpo[*iu]);
+save/jcback_.c:   extern FILE *fpo[];
+save/jcback_.c:   fseek64(fpo[*iu],-9,SEEK_CUR);
+save/jcback_.c:   fseeko(fpo[*iu],-9,SEEK_CUR);
+save/jcback_.c:   fscanf(fpo[*iu],"%s\n", &buf2);
+save/jcback_.c:   fseek64(fpo[*iu], -atoll(buf2) - 9, SEEK_CUR);
+save/jcback_.c:   fseeko(fpo[*iu], -atol(buf2) - 9, SEEK_CUR);
+save/jcback_.c:   if((c1 = fgetc(fpo[*iu])) == EOF) return(-1);; 
+save/jcback_.c:   if((c2 = fgetc(fpo[*iu])) == EOF) return(-1);; 
+save/jcback_.c:   fseek64(fpo[*iu],-2,SEEK_CUR);
+save/jcback_.c:   fseeko(fpo[*iu],-2,SEEK_CUR);
+save/jcclose_.c:   extern FILE *fpo[];
+save/jcclose_.c:   if(fclose(fpo[j])  == EOF) { fprintf(stderr," error in jcclose_..\n"); return(-1);}    
+save/jcend_.c:extern FILE *fpo[MAXFILES];
+save/jcend_.c:	extern FILE *fpo[];
+save/jcend_.c:         fseek(fpo[*iu],0,SEEK_END); 
+save/jcopen_.c:extern FILE *fpo[MAXFILES];
+save/jcopen_.c:	extern FILE *fpo[];
+save/jcopen_.c:	if((fpo[*iu] = fopen(buf2,lacc)) == NULL) {
+save/jcopen_.c:		if((c1 = fgetc(fpo[j])) == EOF) 
+save/jcopen_.c:		if((c2 = fgetc(fpo[j])) == EOF) 
+save/jcopen_.c:			rewind(fpo[j]);
+save/jcopen_.c:		fputc(74, fpo[j]); 
+save/jcopen_.c:		fputc(*magic, fpo[j]);
+save/jcread_.c:  extern FILE *fpo[MAXFILES];
+save/jcread_.c:extern FILE *fpo[];
+save/jcread_.c:   if((c1 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+save/jcread_.c:   if((c2 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+save/jcread_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d%d%d",&lniter,&ltime,&ldt,&xmin,&xmax,xdim, ydim, zdim))
+save/jcread_.c:  getc(fpo[*iu]);
+save/jcread_.c:  start_of_joep = ftello(fpo[*iu]);
+save/jcread_.c:  fscanf(fpo[*iu],"%s\n", &buf2);
+save/jcread_.c:     read_JPEG_file(fpo[*iu], image_out);
+save/jcread_.c:        xdrstdio_create(&xdrs, fpo[*iu], XDR_DECODE);
+save/jcread_.c:      fseeko(fpo[*iu], start_of_joep + length_of_joep, SEEK_SET);
+save/jcread_.c:     fscanf(fpo[*iu],"%s\n", &buf);
+save/jcread_.c:  extern FILE *fpo[MAXFILES];
+save/jcread_.c:extern FILE *fpo[];
+save/jcread_.c:   if((c1 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+save/jcread_.c:   if((c2 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+save/jcread_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d%d%d",&lniter,&ltime,&ldt,&xmin,&xmax,xdim, ydim, zdim))
+save/jcread_.c:  getc(fpo[*iu]);
+save/jcread_.c:  start_of_joep = ftello(fpo[*iu]);
+save/jcread_.c:  fscanf(fpo[*iu],"%s\n", &buf2);
+save/jcread_.c:     read_JPEG_file(fpo[*iu], image_out);
+save/jcread_.c:        xdrstdio_create(&xdrs, fpo[*iu], XDR_DECODE);
+save/jcread_.c:      fseeko(fpo[*iu], start_of_joep + length_of_joep, SEEK_SET);
+save/jcread_.c:     fscanf(fpo[*iu],"%s\n", &buf);
+save/jcrinfo2_.c:extern FILE *fpo[MAXFILES];
+save/jcrinfo2_.c:fpos_t pos;
+save/jcrinfo2_.c:  fgetpos( fpo[*iu], &pos);
+save/jcrinfo2_.c:  if(fscanf(fpo[*iu],"%s",buf) == EOF) { fprintf(stderr," error in jcrinfo_\n"); return(-1);}
+save/jcrinfo2_.c:  fsetpos( fpo[*iu], &pos);
+save/jcrinfo2_.c:  if(fscanf(fpo[*iu],"%s %d %d %d %d %d %d",buf, 
+save/jcrinfo2_.c:                  for(i=0; i< lninfo; i++) fscanf(fpo[*iu],"%e ",&xx);
+save/jcrinfo2_.c:                  for(i=0; i< lninfo*lclen; i++)  fgetc(fpo[*iu]);
+save/jcrinfo2_.c:                  fgetc(fpo[*iu]); /* cr */
+save/jcrinfo2_.c:  for(i=0; i< *ninfo; i++) fscanf(fpo[*iu],"%e ",&finfo[i]);
+save/jcrinfo2_.c:  for(i=0; i< *ninfo*(lclen); i++) cinfo[i] = fgetc(fpo[*iu]);
+save/jcrinfo2_.c:  fgetc(fpo[*iu]); /* cr */
+save/jcrinfo_.c:extern FILE *fpo[MAXFILES];
+save/jcrinfo_.c:fpos_t pos;
+save/jcrinfo_.c:  fgetpos( fpo[*iu], &pos);
+save/jcrinfo_.c:  if(fscanf(fpo[*iu],"%s",buf) == EOF) { fprintf(stderr," error in jcrinfo_\n"); return(-1);}
+save/jcrinfo_.c:  fsetpos( fpo[*iu], &pos);
+save/jcrinfo_.c:  if(fscanf(fpo[*iu],"%e %e %d %e %d %d %d\n",
+save/jcskip_.c:  extern FILE *fpo[MAXFILES];
+save/jcskip_.c:  extern FILE *fpo[];
+save/jcskip_.c:   if((c1 = fgetc(fpo[*iu])) == EOF) return(-1);;
+save/jcskip_.c:   if((c2 = fgetc(fpo[*iu])) == EOF) return(-1);;
+save/jcskip_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d%d%d",&lniter,&ltime,&ldt,&xmin,&xmax,&xdim, &ydim, &zdim))
+save/jcskip_.c:  getc(fpo[*iu]);
+save/jcskip_.c:  start_of_joep = ftell64(fpo[*iu]);
+save/jcskip_.c:  fscanf(fpo[*iu],"%s\n", &buf2);
+save/jcskip_.c:  fseek64(fpo[*iu], start_of_joep + length_of_joep, SEEK_SET);
+save/jcskip_.c:  fscanf(fpo[*iu],"%s\n", &buf2);
+save/jcskip_.c:  start_of_joep = ftello64(fpo[*iu]);
+save/jcskip_.c:  fscanf(fpo[*iu],"%s\n", &buf2);
+save/jcskip_.c:  if(fseeko64(fpo[*iu], xxx, SEEK_SET) != 0) fprintf(stderr," error in fseeko64\n");;
+save/jcskip_.c:  fscanf(fpo[*iu],"%s\n", &buf2);
+save/jctype_.c:  extern FILE *fpo[MAXFILES];
+save/jctype_.c:  fpos_t start;
+save/jctype_.c:extern FILE *fpo[];
+save/jctype_.c:   fgetpos(fpo[*iu],&start);
+save/jctype_.c:   if((c1 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+save/jctype_.c:   if((c2 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+save/jctype_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d%d%d",&lniter,&ltime,&ldt,&xmin,&xmax,&xdim, &ydim, &zdim))
+save/jctype_.c:  getc(fpo[*iu]);
+save/jctype_.c:   fsetpos(fpo[*iu],&start);
+save/jcwinfo2_.c:extern FILE *fpo[MAXFILES];
+save/jcwinfo2_.c:  fprintf(fpo[*iu],"info2 %4d %4d %4d %4d %4d %4d ",
+save/jcwinfo2_.c:  for(i=0; i< *ninfo; i++) fprintf(fpo[*iu],"%6e ",finfo[i]);
+save/jcwinfo2_.c:  for(i=0; i< *ninfo*clen; i++) fputc(cinfo[i],fpo[*iu]);
+save/jcwinfo2_.c:  fprintf(fpo[*iu],"\n");
+save/jcwinfo_.c:extern FILE *fpo[MAXFILES];
+save/jcwinfo_.c:  fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d %4d\n",
+save/jcwinfo_.c:extern FILE *fpo[MAXFILES];
+save/jcwinfo_.c:     fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d %4d\n",
+save/jcwrite_.c:  extern FILE *fpo[];
+save/jcwrite_.c:  start_of_step = ftello(fpo[*iu]);
+save/jcwrite_.c:   fputc(74, fpo[*iu]); fputc(*magic, fpo[*iu]);
+save/jcwrite_.c:  fprintf(fpo[*iu],"%6d %6e %6e %6e %6e %6d %6d %6d\n",
+save/jcwrite_.c:  start_of_joep = ftello(fpo[*iu]);
+save/jcwrite_.c:  fprintf(fpo[*iu],"%8.8i\n", 0); /** only a dummy */
+save/jcwrite_.c:  write_JPEG_file(fpo[*iu], image_buffer, *quality, *xdim, *ydim, *zdim);
+save/jcwrite_.c:         xdrstdio_create(&xdrs, fpo[*iu], XDR_ENCODE);
+save/jcwrite_.c:  length_of_joep = ftello(fpo[*iu]) - start_of_joep;
+save/jcwrite_.c:  printf(" length_of_joep %i start %i ftell %i \n",length_of_joep, start_of_joep, ftello(fpo[*iu]));
+save/jcwrite_.c:  if(fseeko(fpo[*iu], start_of_joep, SEEK_SET) == -1) fprintf(stderr," error in fseeko\n");
+save/jcwrite_.c:  fprintf(fpo[*iu],"%8.8i\n", length_of_joep);                /**length info at beginning of step **/
+save/jcwrite_.c:  if(fseeko(fpo[*iu], start_of_joep + length_of_joep, SEEK_SET) == -1) fprintf(stderr," error in fseeko 2\n");
+save/jcwrite_.c:  fprintf(fpo[*iu],"%8.8i\n", ftello(fpo[*iu]) - start_of_step); /**length info at end of step **/
+save/jcwrite_.c:  fflush(fpo[*iu]);
+save/jcwrite_.c:  extern FILE *fpo[];
+save/jcwrite_.c:  start_of_step = ftello(fpo[*iu]);
+save/jcwrite_.c:   fputc(74, fpo[*iu]); fputc(*magic, fpo[*iu]);
+save/jcwrite_.c:  fprintf(fpo[*iu],"%6d %6e %6e %6e %6e %6d %6d %6d\n",
+save/jcwrite_.c:  start_of_joep = ftello(fpo[*iu]);
+save/jcwrite_.c:  fprintf(fpo[*iu],"%8.8i\n", 0); /** only a dummy */
+save/jcwrite_.c:         xdrstdio_create(&xdrs, fpo[*iu], XDR_ENCODE);
+save/jcwrite_.c:  length_of_joep = ftello(fpo[*iu]) - start_of_joep;
+save/jcwrite_.c:  fseeko(fpo[*iu], start_of_joep, SEEK_SET);
+save/jcwrite_.c:  fprintf(fpo[*iu],"%8.8i\n", length_of_joep);                /**length info at beginning of step **/
+save/jcwrite_.c:  fseeko(fpo[*iu], start_of_joep + length_of_joep, SEEK_SET);
+save/jcwrite_.c:  fprintf(fpo[*iu],"%8.8i\n", ftello(fpo[*iu]) - start_of_step); /**length info at end of step **/
+save/jcwrite_.c:  fflush(fpo[*iu]);
+save2/icback_.c:   extern FILE *fpo[];
+save2/icback_.c:   if(fseek(fpo[*iu],(long)(-(*n)*(*len)),1) == 0) {
+save2/icclose_.c:   extern FILE *fpo[];
+save2/icclose_.c:   fclose(fpo[j]);     
+save2/icddopen_.c:FILE *fpo[MAXFILES];
+save2/icddopen_.c: extern FILE *fpo[];
+save2/icddopen_.c:    if((fpo[j] = fopen(buf2,acc)) == NULL) {
+save2/icddopen_.c:    if((fpo[*iu] = fopen(file,acc)) == NULL) return(1);
+save2/icddwinfo_.c:extern FILE *fpo[MAXFILES];
+save2/icddwinfo_.c:  fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d\n",
+save2/icddwrite_.c:  extern FILE *fpo[];
+save2/icddwrite_.c:  fprintf(fpo[*iu],"%6d %6e %6e %6e %6e %6d\n",
+save2/icddwrite_.c:      putc(i1,fpo[*iu]);
+save2/icddwrite_.c:      if(*niter != -2) putc(i2,fpo[*iu]);
+save2/icddwrite_.c:  fflush(fpo[*iu]);
+save2/icdwinfo_.c:extern FILE *fpo[MAXFILES];
+save2/icdwinfo_.c:  fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d\n",
+save2/icdwrite_.c:  extern FILE *fpo[];
+save2/icdwrite_.c:  fprintf(fpo[*iu],"%6d %6e %6e %6e %6e %6d\n",
+save2/icdwrite_.c:      putc(i1,fpo[*iu]);
+save2/icdwrite_.c:      if(*niter != -2) putc(i2,fpo[*iu]);
+save2/icdwrite_.c:  fflush(fpo[*iu]);
+save2/icend_.c:  extern FILE *fpo[];
+save2/icend_.c:      fseek(fpo[*iu],0,SEEK_END); 
+save2/icopen_.c:FILE *fpo[MAXFILES];
+save2/icopen_.c: extern FILE *fpo[];
+save2/icopen_.c:    if((fpo[j] = fopen(buf2,acc)) == NULL) {
+save2/icopen_.c:    if((fpo[*iu] = fopen(file,acc)) == NULL) return(1);
+save2/icread_.c:  extern FILE *fpo[MAXFILES];
+save2/icread_.c:  extern FILE *fpo[];
+save2/icread_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d",&lniter,&ltime,&ldt,&xmin,&xmax,xlen))
+save2/icread_.c:  getc(fpo[*iu]);
+save2/icread_.c:	 i1=getc(fpo[*iu]);
+save2/icread_.c:	 if(*niter != -2 ) i2=getc(fpo[*iu]);
+save2/icrinfo_.c:extern FILE *fpo[MAXFILES];
+save2/icrinfo_.c:  fscanf(fpo[*iu],"%e %e %d %e %d %d\n",
+save2/icrinfo_.c:/***     getc(fpo[*iu]); ***/
+save2/icskip_.c:  extern FILE *fpo[];
+save2/icskip_.c:  l = ftell(fpo[*iu]);
+save2/icskip_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d",&lniter,time,&x,&x,&x,&len))
+save2/icskip_.c:  getc(fpo[*iu]);
+save2/icskip_.c:     for (i=0; i < len; i++) getc(fpo[*iu]);
+save2/icskip_.c:     if(*niter != -2 ) for (i=0; i < len; i++) getc(fpo[*iu]);
+save2/icskip_.c:  l = ftell(fpo[*iu]) - l;
+save2/icwinfo_.c:extern FILE *fpo[MAXFILES];
+save2/icwinfo_.c:  fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d\n",
+save2/icwrite_.c:  extern FILE *fpo[];
+save2/icwrite_.c:  fprintf(fpo[*iu],"%6d %6e %6e %6e %6e %6d\n",
+save2/icwrite_.c:      putc(i1,fpo[*iu]);
+save2/icwrite_.c:      if(*niter != -2) putc(i2,fpo[*iu]);
+save2/icwrite_.c:  fflush(fpo[*iu]);
+save2/jcback_.c:   extern FILE *fpo[];
+save2/jcback_.c:   if(fseeko(fpo[*iu],-9,SEEK_CUR) == -1) fprintf(stderr,"fseek error in jcback 0\n");
+save2/jcback_.c:   fscanf(fpo[*iu],"%s\n", &buf2);
+save2/jcback_.c:   if(fseeko(fpo[*iu], (off_t)(-atol(buf2) - 9), SEEK_CUR) == -1) fprintf(stderr,"fseek error in jcback 1\n");
+save2/jcback_.c:   if((c1 = fgetc(fpo[*iu])) == EOF) return(-1);; 
+save2/jcback_.c:   if((c2 = fgetc(fpo[*iu])) == EOF) return(-1);; 
+save2/jcback_.c:   if(fseeko(fpo[*iu],-2,SEEK_CUR) == -1) fprintf(stderr,"fseek error in jcback 2\n");
+save2/jcclose_.c:   extern FILE *fpo[];
+save2/jcclose_.c:   if(fclose(fpo[j])  == EOF) { fprintf(stderr," error in jcclose_..\n"); return(-1);}    
+save2/jcend_.c:extern FILE *fpo[MAXFILES];
+save2/jcend_.c:	extern FILE *fpo[];
+save2/jcend_.c:         fseek(fpo[*iu],0,SEEK_END); 
+save2/jcopen_.c:extern FILE *fpo[MAXFILES];
+save2/jcopen_.c:	extern FILE *fpo[];
+save2/jcopen_.c:	if((fpo[*iu] = fopen(buf2,lacc)) == NULL) {
+save2/jcopen_.c:		if((c1 = fgetc(fpo[j])) == EOF) 
+save2/jcopen_.c:		if((c2 = fgetc(fpo[j])) == EOF) 
+save2/jcopen_.c:			rewind(fpo[j]);
+save2/jcopen_.c:		fputc(74, fpo[j]); 
+save2/jcopen_.c:		fputc(*magic, fpo[j]);
+save2/jcread_.c:  extern FILE *fpo[MAXFILES];
+save2/jcread_.c:extern FILE *fpo[];
+save2/jcread_.c:   if((c1 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+save2/jcread_.c:   if((c2 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+save2/jcread_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d%d%d",&lniter,&ltime,&ldt,&xmin,&xmax,xdim, ydim, zdim))
+save2/jcread_.c:  getc(fpo[*iu]);
+save2/jcread_.c:  start_of_joep = ftello(fpo[*iu]);
+save2/jcread_.c:  fscanf(fpo[*iu],"%s\n", buf2);
+save2/jcread_.c:     read_JPEG_file(fpo[*iu], image_out);
+save2/jcread_.c:        xdrstdio_create(&xdrs, fpo[*iu], XDR_DECODE);
+save2/jcread_.c:     fseeko(fpo[*iu], start_of_joep + length_of_joep, SEEK_SET);
+save2/jcread_.c:     fscanf(fpo[*iu],"%s\n", buf);
+save2/jcrinfo2_.c:extern FILE *fpo[MAXFILES];
+save2/jcrinfo2_.c:fpos_t pos;
+save2/jcrinfo2_.c:  fgetpos( fpo[*iu], &pos);
+save2/jcrinfo2_.c:  if(fscanf(fpo[*iu],"%s",buf) == EOF) { fprintf(stderr," error in jcrinfo_\n"); return(-1);}
+save2/jcrinfo2_.c:  fsetpos( fpo[*iu], &pos);
+save2/jcrinfo2_.c:  if(fscanf(fpo[*iu],"%s %d %d %d %d %d %d",buf, 
+save2/jcrinfo2_.c:                  for(i=0; i< lninfo; i++) fscanf(fpo[*iu],"%e ",&xx);
+save2/jcrinfo2_.c:                  for(i=0; i< lninfo*lclen; i++)  fgetc(fpo[*iu]);
+save2/jcrinfo2_.c:                  fgetc(fpo[*iu]); /* cr */
+save2/jcrinfo2_.c:  for(i=0; i< *ninfo; i++) fscanf(fpo[*iu],"%e ",&finfo[i]);
+save2/jcrinfo2_.c:  for(i=0; i< *ninfo*(lclen); i++) cinfo[i] = fgetc(fpo[*iu]);
+save2/jcrinfo2_.c:  fgetc(fpo[*iu]); /* cr */
+save2/jcrinfo_.c:extern FILE *fpo[MAXFILES];
+save2/jcrinfo_.c:fpos_t pos;
+save2/jcrinfo_.c:  fgetpos( fpo[*iu], &pos);
+save2/jcrinfo_.c:  if(fscanf(fpo[*iu],"%s",buf) == EOF) { fprintf(stderr," error in jcrinfo_\n"); return(-1);}
+save2/jcrinfo_.c:  fsetpos( fpo[*iu], &pos);
+save2/jcrinfo_.c:  if(fscanf(fpo[*iu],"%e %e %d %e %d %d %d\n",
+save2/jcskip_.c:  extern FILE *fpo[MAXFILES];
+save2/jcskip_.c:  extern FILE *fpo[];
+save2/jcskip_.c:   if((c1 = fgetc(fpo[*iu])) == EOF) return(-1);;
+save2/jcskip_.c:   if((c2 = fgetc(fpo[*iu])) == EOF) return(-1);;
+save2/jcskip_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d%d%d",&lniter,&ltime,&ldt,&xmin,&xmax,&xdim, &ydim, &zdim))
+save2/jcskip_.c:  getc(fpo[*iu]);
+save2/jcskip_.c:  start_of_joep = ftello64(fpo[*iu]);
+save2/jcskip_.c:  fscanf(fpo[*iu],"%s\n", &buf2);
+save2/jcskip_.c:  if(fseeko64(fpo[*iu], xxx, SEEK_SET) != 0) fprintf(stderr," error in fseeko64\n");;
+save2/jcskip_.c:  fscanf(fpo[*iu],"%s\n", &buf2);
+save2/jctype_.c:  extern FILE *fpo[MAXFILES];
+save2/jctype_.c:  fpos_t start;
+save2/jctype_.c:extern FILE *fpo[];
+save2/jctype_.c:   fgetpos(fpo[*iu],&start);
+save2/jctype_.c:   if((c1 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+save2/jctype_.c:   if((c2 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+save2/jctype_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d%d%d",&lniter,&ltime,&ldt,&xmin,&xmax,&xdim, &ydim, &zdim))
+save2/jctype_.c:  getc(fpo[*iu]);
+save2/jctype_.c:   fsetpos(fpo[*iu],&start);
+save2/jcwinfo2_.c:extern FILE *fpo[MAXFILES];
+save2/jcwinfo2_.c:  fprintf(fpo[*iu],"info2 %4d %4d %4d %4d %4d %4d ",
+save2/jcwinfo2_.c:  for(i=0; i< *ninfo; i++) fprintf(fpo[*iu],"%6e ",finfo[i]);
+save2/jcwinfo2_.c:  for(i=0; i< *ninfo*clen; i++) fputc(cinfo[i],fpo[*iu]);
+save2/jcwinfo2_.c:  fprintf(fpo[*iu],"\n");
+save2/jcwinfo_.c:extern FILE *fpo[MAXFILES];
+save2/jcwinfo_.c:  fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d %4d\n",
+save2/jcwinfo_.c:extern FILE *fpo[MAXFILES];
+save2/jcwinfo_.c:     fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d %4d\n",
+save2/jcwrite_.c:  extern FILE *fpo[];
+save2/jcwrite_.c:  start_of_step = ftello(fpo[*iu]);
+save2/jcwrite_.c:   fputc(74, fpo[*iu]); fputc(*magic, fpo[*iu]);
+save2/jcwrite_.c:  fprintf(fpo[*iu],"%6d %6e %6e %6e %6e %6d %6d %6d\n",
+save2/jcwrite_.c:  start_of_joep = ftello(fpo[*iu]);
+save2/jcwrite_.c:  fprintf(fpo[*iu],"%8.8i\n", 0); /** only a dummy */
+save2/jcwrite_.c:  write_JPEG_file(fpo[*iu], image_buffer, *quality, *xdim, plist->num);
+save2/jcwrite_.c://   for(i=0; i< 30 ; i++) fprintf(fpo[*iu], "C");
+save2/jcwrite_.c:         xdrstdio_create(&xdrs, fpo[*iu], XDR_ENCODE);
+save2/jcwrite_.c:  length_of_joep = ftello(fpo[*iu]) - start_of_joep;
+save2/jcwrite_.c:  if(1) printf(" length_of_joep %d start %d ftell %d \n",length_of_joep, (long)start_of_joep, ftello(fpo[*iu]));
+save2/jcwrite_.c:  if(fseeko(fpo[*iu], start_of_joep, SEEK_SET) == -1) fprintf(stderr," error in fseeko\n");
+save2/jcwrite_.c:  fprintf(fpo[*iu],"%8.8i\n", length_of_joep);                /**length info at beginning of step **/
+save2/jcwrite_.c:  if(fseeko(fpo[*iu], start_of_joep + length_of_joep, SEEK_SET) == -1) fprintf(stderr," error in fseeko 2\n");
+save2/jcwrite_.c:  // fprintf(fpo[*iu],"%8.8i\n", ftello(fpo[*iu]) - start_of_step); /**length info at end of step **/
+save2/jcwrite_.c:  fprintf(fpo[*iu],"%8.8i\n", ftello(fpo[*iu]) - start_of_step); /**length info at end of step **/
+save2/jcwrite_.c:  fflush(fpo[*iu]);
+Binary file stR6bj1e matches
+works/icback_.c:   extern FILE *fpo[];
+works/icback_.c:   if(fseek(fpo[*iu],(long)(-(*n)*(*len)),1) == 0) {
+works/icclose_.c:   extern FILE *fpo[];
+works/icclose_.c:   fclose(fpo[j]);     
+works/icddopen_.c:FILE *fpo[MAXFILES];
+works/icddopen_.c: extern FILE *fpo[];
+works/icddopen_.c:    if((fpo[j] = fopen(buf2,acc)) == NULL) {
+works/icddopen_.c:    if((fpo[*iu] = fopen(file,acc)) == NULL) return(1);
+works/icddwinfo_.c:extern FILE *fpo[MAXFILES];
+works/icddwinfo_.c:  fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d\n",
+works/icddwrite_.c:  extern FILE *fpo[];
+works/icddwrite_.c:  fprintf(fpo[*iu],"%6d %6e %6e %6e %6e %6d\n",
+works/icddwrite_.c:      putc(i1,fpo[*iu]);
+works/icddwrite_.c:      if(*niter != -2) putc(i2,fpo[*iu]);
+works/icddwrite_.c:  fflush(fpo[*iu]);
+works/icdwinfo_.c:extern FILE *fpo[MAXFILES];
+works/icdwinfo_.c:  fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d\n",
+works/icdwrite_.c:  extern FILE *fpo[];
+works/icdwrite_.c:  fprintf(fpo[*iu],"%6d %6e %6e %6e %6e %6d\n",
+works/icdwrite_.c:      putc(i1,fpo[*iu]);
+works/icdwrite_.c:      if(*niter != -2) putc(i2,fpo[*iu]);
+works/icdwrite_.c:  fflush(fpo[*iu]);
+works/icend_.c:  extern FILE *fpo[];
+works/icend_.c:      fseek(fpo[*iu],0,SEEK_END); 
+works/icopen_.c:FILE *fpo[MAXFILES];
+works/icopen_.c: extern FILE *fpo[];
+works/icopen_.c:    if((fpo[j] = fopen(buf2,acc)) == NULL) {
+works/icopen_.c:    if((fpo[*iu] = fopen(file,acc)) == NULL) return(1);
+works/icread_.c:  extern FILE *fpo[MAXFILES];
+works/icread_.c:  extern FILE *fpo[];
+works/icread_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d",&lniter,&ltime,&ldt,&xmin,&xmax,xlen))
+works/icread_.c:  getc(fpo[*iu]);
+works/icread_.c:	 i1=getc(fpo[*iu]);
+works/icread_.c:	 if(*niter != -2 ) i2=getc(fpo[*iu]);
+works/icrinfo_.c:extern FILE *fpo[MAXFILES];
+works/icrinfo_.c:  fscanf(fpo[*iu],"%e %e %d %e %d %d\n",
+works/icrinfo_.c:/***     getc(fpo[*iu]); ***/
+works/icskip_.c:  extern FILE *fpo[];
+works/icskip_.c:  l = ftell(fpo[*iu]);
+works/icskip_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d",&lniter,time,&x,&x,&x,&len))
+works/icskip_.c:  getc(fpo[*iu]);
+works/icskip_.c:     for (i=0; i < len; i++) getc(fpo[*iu]);
+works/icskip_.c:     if(*niter != -2 ) for (i=0; i < len; i++) getc(fpo[*iu]);
+works/icskip_.c:  l = ftell(fpo[*iu]) - l;
+works/icwinfo_.c:extern FILE *fpo[MAXFILES];
+works/icwinfo_.c:  fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d\n",
+works/icwrite_.c:  extern FILE *fpo[];
+works/icwrite_.c:  fprintf(fpo[*iu],"%6d %6e %6e %6e %6e %6d\n",
+works/icwrite_.c:      putc(i1,fpo[*iu]);
+works/icwrite_.c:      if(*niter != -2) putc(i2,fpo[*iu]);
+works/icwrite_.c:  fflush(fpo[*iu]);
+works/jcback_.c:   extern FILE *fpo[];
+works/jcback_.c:   fseek64(fpo[*iu],-17,SEEK_CUR);
+works/jcback_.c:   if(fseeko(fpo[*iu],-17,SEEK_CUR) == -1) fprintf(stderr,"fseek error in jcback 0\n");
+works/jcback_.c:   fscanf(fpo[*iu],"%s\n", &buf2);
+works/jcback_.c:   fseek64(fpo[*iu], -atoll(buf2) - 17, SEEK_CUR);
+works/jcback_.c:   if(fseeko(fpo[*iu], (off_t)(-atol(buf2) - 17), SEEK_CUR) == -1) fprintf(stderr,"fseek error in jcback 1\n");
+works/jcback_.c:   if((c1 = fgetc(fpo[*iu])) == EOF) return(-1);; 
+works/jcback_.c:   if((c2 = fgetc(fpo[*iu])) == EOF) return(-1);; 
+works/jcback_.c:   fseek64(fpo[*iu],-2,SEEK_CUR);
+works/jcback_.c:   if(fseeko(fpo[*iu],-2,SEEK_CUR) == -1) fprintf(stderr,"fseek error in jcback 2\n");
+works/jcclose_.c:   extern FILE *fpo[];
+works/jcclose_.c:   if(fclose(fpo[j])  == EOF) { fprintf(stderr," error in jcclose_..\n"); return(-1);}    
+works/jcend_.c:extern FILE *fpo[MAXFILES];
+works/jcend_.c:	extern FILE *fpo[];
+works/jcend_.c:         fseek(fpo[*iu],0,SEEK_END); 
+works/jcopen_.c:extern FILE *fpo[MAXFILES];
+works/jcopen_.c:	extern FILE *fpo[];
+works/jcopen_.c:	if((fpo[*iu] = fopen(buf2,lacc)) == NULL) {
+works/jcopen_.c:		if((c1 = fgetc(fpo[j])) == EOF) 
+works/jcopen_.c:		if((c2 = fgetc(fpo[j])) == EOF) 
+works/jcopen_.c:			rewind(fpo[j]);
+works/jcopen_.c:		fputc(74, fpo[j]); 
+works/jcopen_.c:		fputc(*magic, fpo[j]);
+works/jcread_.c:  extern FILE *fpo[MAXFILES];
+works/jcread_.c:extern FILE *fpo[];
+works/jcread_.c:   if((c1 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+works/jcread_.c:   if((c2 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+works/jcread_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d%d%d",&lniter,&ltime,&ldt,&xmin,&xmax,xdim, ydim, zdim))
+works/jcread_.c:  getc(fpo[*iu]);
+works/jcread_.c:  start_of_joep = ftello(fpo[*iu]);
+works/jcread_.c:  fscanf(fpo[*iu],"%s\n", &buf2);
+works/jcread_.c:     read_JPEG_file(fpo[*iu], image_out);
+works/jcread_.c:        xdrstdio_create(&xdrs, fpo[*iu], XDR_DECODE);
+works/jcread_.c:      fseeko(fpo[*iu], start_of_joep + length_of_joep, SEEK_SET);
+works/jcread_.c:     fscanf(fpo[*iu],"%s\n", &buf);
+works/jcread_.c:  extern FILE *fpo[MAXFILES];
+works/jcread_.c:extern FILE *fpo[];
+works/jcread_.c:   if((c1 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+works/jcread_.c:   if((c2 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+works/jcread_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d%d%d",&lniter,&ltime,&ldt,&xmin,&xmax,xdim, ydim, zdim))
+works/jcread_.c:  getc(fpo[*iu]);
+works/jcread_.c:  start_of_joep = ftello(fpo[*iu]);
+works/jcread_.c:  fscanf(fpo[*iu],"%s\n", &buf2);
+works/jcread_.c:     read_JPEG_file(fpo[*iu], image_out);
+works/jcread_.c:        xdrstdio_create(&xdrs, fpo[*iu], XDR_DECODE);
+works/jcread_.c:      fseeko(fpo[*iu], start_of_joep + length_of_joep, SEEK_SET);
+works/jcread_.c:     fscanf(fpo[*iu],"%s\n", &buf);
+works/jcrinfo2_.c:extern FILE *fpo[MAXFILES];
+works/jcrinfo2_.c:fpos_t pos;
+works/jcrinfo2_.c:  fgetpos( fpo[*iu], &pos);
+works/jcrinfo2_.c:  if(fscanf(fpo[*iu],"%s",buf) == EOF) { fprintf(stderr," error in jcrinfo_\n"); return(-1);}
+works/jcrinfo2_.c:  fsetpos( fpo[*iu], &pos);
+works/jcrinfo2_.c:  if(fscanf(fpo[*iu],"%s %d %d %d %d %d %d",buf, 
+works/jcrinfo2_.c:                  for(i=0; i< lninfo; i++) fscanf(fpo[*iu],"%e ",&xx);
+works/jcrinfo2_.c:                  for(i=0; i< lninfo*lclen; i++)  fgetc(fpo[*iu]);
+works/jcrinfo2_.c:                  fgetc(fpo[*iu]); /* cr */
+works/jcrinfo2_.c:  for(i=0; i< *ninfo; i++) fscanf(fpo[*iu],"%e ",&finfo[i]);
+works/jcrinfo2_.c:  for(i=0; i< *ninfo*(lclen); i++) cinfo[i] = fgetc(fpo[*iu]);
+works/jcrinfo2_.c:  fgetc(fpo[*iu]); /* cr */
+works/jcrinfo_.c:extern FILE *fpo[MAXFILES];
+works/jcrinfo_.c:fpos_t pos;
+works/jcrinfo_.c:  fgetpos( fpo[*iu], &pos);
+works/jcrinfo_.c:  if(fscanf(fpo[*iu],"%s",buf) == EOF) { fprintf(stderr," error in jcrinfo_\n"); return(-1);}
+works/jcrinfo_.c:  fsetpos( fpo[*iu], &pos);
+works/jcrinfo_.c:  if(fscanf(fpo[*iu],"%e %e %d %e %d %d %d\n",
+works/jcskip_.c:  extern FILE *fpo[MAXFILES];
+works/jcskip_.c:  extern FILE *fpo[];
+works/jcskip_.c:   if((c1 = fgetc(fpo[*iu])) == EOF) return(-1);;
+works/jcskip_.c:   if((c2 = fgetc(fpo[*iu])) == EOF) return(-1);;
+works/jcskip_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d%d%d",&lniter,&ltime,&ldt,&xmin,&xmax,&xdim, &ydim, &zdim))
+works/jcskip_.c:  getc(fpo[*iu]);
+works/jcskip_.c:  start_of_joep = ftell64(fpo[*iu]);
+works/jcskip_.c:  fscanf(fpo[*iu],"%s\n", &buf2);
+works/jcskip_.c:  fseek64(fpo[*iu], start_of_joep + length_of_joep, SEEK_SET);
+works/jcskip_.c:  fscanf(fpo[*iu],"%s\n", &buf2);
+works/jcskip_.c:  start_of_joep = ftello64(fpo[*iu]);
+works/jcskip_.c:  fscanf(fpo[*iu],"%s\n", &buf2);
+works/jcskip_.c:  if(fseeko64(fpo[*iu], xxx, SEEK_SET) != 0) fprintf(stderr," error in fseeko64\n");;
+works/jcskip_.c:  fscanf(fpo[*iu],"%s\n", &buf2);
+works/jctype_.c:  extern FILE *fpo[MAXFILES];
+works/jctype_.c:  fpos_t start;
+works/jctype_.c:extern FILE *fpo[];
+works/jctype_.c:   fgetpos(fpo[*iu],&start);
+works/jctype_.c:   if((c1 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+works/jctype_.c:   if((c2 =  (unsigned char)fgetc(fpo[*iu])) == EOF) return(-1);;
+works/jctype_.c:  if((fscanf(fpo[*iu],"%d%e%e%e%e%d%d%d",&lniter,&ltime,&ldt,&xmin,&xmax,&xdim, &ydim, &zdim))
+works/jctype_.c:  getc(fpo[*iu]);
+works/jctype_.c:   fsetpos(fpo[*iu],&start);
+works/jcwinfo2_.c:extern FILE *fpo[MAXFILES];
+works/jcwinfo2_.c:  fprintf(fpo[*iu],"info2 %4d %4d %4d %4d %4d %4d ",
+works/jcwinfo2_.c:  for(i=0; i< *ninfo; i++) fprintf(fpo[*iu],"%6e ",finfo[i]);
+works/jcwinfo2_.c:  for(i=0; i< *ninfo*clen; i++) fputc(cinfo[i],fpo[*iu]);
+works/jcwinfo2_.c:  fprintf(fpo[*iu],"\n");
+works/jcwinfo_.c:extern FILE *fpo[MAXFILES];
+works/jcwinfo_.c:  fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d %4d\n",
+works/jcwinfo_.c:extern FILE *fpo[MAXFILES];
+works/jcwinfo_.c:     fprintf(fpo[*iu],"%6e %6e %1d %6e %4d %4d %4d\n",
+works/jcwrite_.c:  extern FILE *fpo[];
+works/jcwrite_.c:  start_of_step = ftello(fpo[*iu]);
+works/jcwrite_.c:   fputc(74, fpo[*iu]); fputc(*magic, fpo[*iu]);
+works/jcwrite_.c:  fprintf(fpo[*iu],"%6d %6e %6e %6e %6e %6d %6d %6d\n",
+works/jcwrite_.c:  start_of_joep = ftello(fpo[*iu]);
+works/jcwrite_.c:  fprintf(fpo[*iu],"%16.16i\n", 0); /** only a dummy */
+works/jcwrite_.c:  write_JPEG_file(fpo[*iu], image_buffer, *quality, *xdim, *ydim, *zdim);
+works/jcwrite_.c:         xdrstdio_create(&xdrs, fpo[*iu], XDR_ENCODE);
+works/jcwrite_.c:  length_of_joep = ftello(fpo[*iu]) - start_of_joep;
+works/jcwrite_.c:  printf(" length_of_joep %d start %d ftell %d \n",length_of_joep, (long)start_of_joep, ftello(fpo[*iu]));
+works/jcwrite_.c:  if(fseeko(fpo[*iu], start_of_joep, SEEK_SET) == -1) fprintf(stderr," error in fseeko\n");
+works/jcwrite_.c:  fprintf(fpo[*iu],"%16.16d\n", length_of_joep);                /**length info at beginning of step **/
+works/jcwrite_.c:  if(fseeko(fpo[*iu], start_of_joep + length_of_joep, SEEK_SET) == -1) fprintf(stderr," error in fseeko 2\n");
+works/jcwrite_.c:  fprintf(fpo[*iu],"%16.16d\n", ftello(fpo[*iu]) - start_of_step); /**length info at end of step **/
+works/jcwrite_.c:  fflush(fpo[*iu]);
+works/jcwrite_.c:  extern FILE *fpo[];
+works/jcwrite_.c:  start_of_step = ftello(fpo[*iu]);
+works/jcwrite_.c:   fputc(74, fpo[*iu]); fputc(*magic, fpo[*iu]);
+works/jcwrite_.c:  fprintf(fpo[*iu],"%6d %6e %6e %6e %6e %6d %6d %6d\n",
+works/jcwrite_.c:  start_of_joep = ftello(fpo[*iu]);
+works/jcwrite_.c:  fprintf(fpo[*iu],"%16.16d\n", 0); /** only a dummy */
+works/jcwrite_.c:         xdrstdio_create(&xdrs, fpo[*iu], XDR_ENCODE);
+works/jcwrite_.c:  length_of_joep = ftello(fpo[*iu]) - start_of_joep;
+works/jcwrite_.c:  fseeko(fpo[*iu], start_of_joep, SEEK_SET);
+works/jcwrite_.c:  fprintf(fpo[*iu],"%16.16d\n", length_of_joep);                /**length info at beginning of step **/
+works/jcwrite_.c:  fseeko(fpo[*iu], start_of_joep + length_of_joep, SEEK_SET);
+works/jcwrite_.c:  fprintf(fpo[*iu],"%16.16d\n", ftello(fpo[*iu]) - start_of_step); /**length info at end of step **/
+works/jcwrite_.c:  fflush(fpo[*iu]);

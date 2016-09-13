@@ -1,0 +1,38 @@
+
+     NAME
+          jcwinfo2 - write a information record  on a 'jc'-formatted 
+                    file 
+
+     FORTRAN F77 SPECIFICATION
+          integer function jcwinfo2(iu,numx,numy,numz,npde,ninfo,finfo,cinfo)
+          integer*4 iu,numx, numy, numz, ninfo, npde
+          real*4    finfo(ninfo)
+          character cinfo(ninfo)*20
+
+     PARAMETERS
+
+         INPUT:
+         iu     = file unit, can range from 1 to 25
+         numx   = number of point in x-direction
+         numy   = number of point in y-direction
+         numz   = number of point in z-direction
+         npde   = number of pde's
+         ninfo  = number of info-records (must be equal for all data-types)
+         finfo  = array with real numbers
+         cinfo  = array with character strings - the lenght does not necessarily
+                  has to be 20 .. any lenght will do
+
+     RETURNS
+         -1     = error
+          0  = o.k.
+
+     DESCRIPTION
+         jcwinfo2 writes an information record on the data-file.
+
+     KNOWN PROBLEMS
+         iddc is an integer and not a logical variable
+
+     SEE ALSO
+         jcopen, jcwinfo, jcwrite, jcskip, jcrinfo, jcread, jcback, 
+         jcclose,jctools
+

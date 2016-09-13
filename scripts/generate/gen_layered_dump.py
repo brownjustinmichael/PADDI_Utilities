@@ -15,6 +15,7 @@ parser.add_argument("--parameter_file", default="parameter_file")
 parser.add_argument("--dump_file", default=None)
 parser.add_argument("--number", default=4, type=int)
 parser.add_argument("--convolve", default=5, type=int)
+parser.add_argument("--offset", default=0.0, type=float)
 
 args = parser.parse_args()
 
@@ -54,7 +55,7 @@ dump["uz"][:,:,0,:] = 0.0
 
 # Construct the layer profile in physical space
 nz = params["max_degree_of_z_fourier_modes"] * 2
-z = np.arange(0, nz * 2) * params["z_extent_of_the_box"] / nz
+z = np.arange(0.0, nz * 2) * params["z_extent_of_the_box"] / nz - args.offset
 layer = (np.floor(z * args.number / params["z_extent_of_the_box"]))
 layer *= params["z_extent_of_the_box"] / args.number
 

@@ -1,0 +1,63 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+gcc -D_GNU_SOURCE -E
+gcc -D_GNU_SOURCE -o conftest -O conftest.c
+configure:664:1: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+main(){return(0);}
+^
+1 warning generated.
+gcc -D_GNU_SOURCE -c -O conftest.c
+gcc -D_GNU_SOURCE -E
+gcc -D_GNU_SOURCE -E
+gcc -D_GNU_SOURCE -E
+gcc -D_GNU_SOURCE -c -O conftest.c
+gcc -D_GNU_SOURCE -c -O conftest.c
+gcc -D_GNU_SOURCE -c -O conftest.c
+gcc -D_GNU_SOURCE -c -O conftest.c
+gcc -D_GNU_SOURCE -c -O conftest.c
+gcc -D_GNU_SOURCE -c -O conftest.c
+configure:1081:1: warning: control reaches end of non-void function [-Wreturn-type]
+} inline int foo() { return 0; }
+^
+1 warning generated.
+gcc -D_GNU_SOURCE -c -O conftest.c
+gcc -D_GNU_SOURCE -o conftest -O conftest.c
+gcc -D_GNU_SOURCE -o conftest -O conftest.c
+configure:1199:5: warning: implicitly declaring library function 'printf' with type 'int (const char *, ...)' [-Wimplicit-function-declaration]
+    printf("Hmm, it seems 'char' is not eight bits wide on your machine.\n");
+    ^
+configure:1199:5: note: include the header <stdio.h> or explicitly provide a declaration for 'printf'
+configure:1205:1: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+main() {
+^
+configure:1206:3: warning: implicitly declaring library function 'exit' with type 'void (int) __attribute__((noreturn))' [-Wimplicit-function-declaration]
+  exit(is_char_signed((int) signed_char_check));
+  ^
+configure:1206:3: note: include the header <stdlib.h> or explicitly provide a declaration for 'exit'
+3 warnings generated.
+gcc -D_GNU_SOURCE -o conftest -O conftest.c
+configure:1248:3: warning: implicitly declaring library function 'printf' with type 'int (const char *, ...)' [-Wimplicit-function-declaration]
+  printf("Right shift isn't acting as I expect it to.\n");
+  ^
+configure:1248:3: note: include the header <stdio.h> or explicitly provide a declaration for 'printf'
+configure:1244:16: warning: shifting a negative signed value is undefined [-Wshift-negative-value]
+  res |= (~0L) << (32-4);
+         ~~~~~ ^
+configure:1252:1: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+main() {
+^
+configure:1253:3: warning: implicitly declaring library function 'exit' with type 'void (int) __attribute__((noreturn))' [-Wimplicit-function-declaration]
+  exit(is_shifting_signed(-0x7F7E80B1L));
+  ^
+configure:1253:3: note: include the header <stdlib.h> or explicitly provide a declaration for 'exit'
+4 warnings generated.
+gcc -D_GNU_SOURCE -o conftest -O conftest.c
+configure:1277:1: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+main() {
+^
+configure:1279:5: warning: implicitly declaring library function 'exit' with type 'void (int) __attribute__((noreturn))' [-Wimplicit-function-declaration]
+    exit(0);
+    ^
+configure:1279:5: note: include the header <stdlib.h> or explicitly provide a declaration for 'exit'
+2 warnings generated.

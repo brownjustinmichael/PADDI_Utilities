@@ -1,0 +1,29 @@
+
+     NAME
+          icback - backskip  1 or more records on a 'ic'-formatted file 
+
+     FORTRAN F77 SPECIFICATION
+          integer function icback(iu,nskip,len)
+          integer*4 iu, nskip, len
+
+     PARAMETERS
+
+         INPUT:
+         iu     = file unit, can range from 1 to 25
+         nskip  = number of steps to  rewind
+         len    = length of last step in bytes
+
+     RETURNS
+         0      =  fine
+
+     DESCRIPTION
+         icback  rewinds  1 or more records on a 'ic'-formatted file.
+
+     KNOWN PROBLEMS
+         icback needs the length 'len' of the record in bytes. Therefore
+         a icskip has to be done in advance in order to know the length.
+
+     SEE ALSO
+         icopen, icwinfo, icwrite, icskip, icrinfo, icread, icback, 
+         icclose,ictools
+

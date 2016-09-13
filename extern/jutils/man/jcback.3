@@ -1,0 +1,27 @@
+
+     NAME
+          jcback - backskip  1 or more records on a 'jc'-formatted file 
+
+     FORTRAN F77 SPECIFICATION
+          integer function icback(iu,nskip)
+          integer*4 iu, nskip
+
+     PARAMETERS
+
+         INPUT:
+         iu     = file unit, can range from 1 to 25
+         nskip  = number of steps to  rewind
+
+     RETURNS
+         -1      =  error
+         magic   =  magic file number
+
+     DESCRIPTION
+         icback  rewinds  1 or more records on a 'jc'-formatted file.
+
+     KNOWN PROBLEMS
+
+     SEE ALSO
+         jcopen, jcwinfo, jcwrite, jcskip, jcrinfo, jcread, jcback, 
+         jcclose,jctools
+

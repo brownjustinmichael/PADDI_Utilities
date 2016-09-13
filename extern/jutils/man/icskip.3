@@ -1,0 +1,33 @@
+
+     NAME
+          icskip - skip 1 or more records on a 'ic'-formatted file 
+
+     FORTRAN F77 SPECIFICATION
+          integer function icskip(iu,nskip,niter,time)
+          integer*4 iu, niter, nskip
+          real*4 time
+
+     PARAMETERS
+
+         INPUT:
+         iu     = file unit, can range from 1 to 25
+         nskip  = number of steps to skip
+
+         OUTPUT:
+         niter  = iteration-numer of the last skiped model iteration
+         time   = iteration-time of the last skiped time  step
+
+     RETURNS
+         l      =  length of last step in bytes
+
+     DESCRIPTION
+         icskip skips 1 or more records on a 'ic'-formatted file.
+
+     KNOWN PROBLEMS
+         The length 'l' of the record should be returned as a parameter.
+         This would be more consistent.
+
+     SEE ALSO
+         icopen, icwinfo, icwrite, icskip, icrinfo, icread, icback, 
+         icclose,ictools
+

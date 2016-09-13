@@ -1,0 +1,61 @@
+#include "jcmagic.h"
+      program cont
+      parameter (npt=300000)
+      real, dimension(:), allocatable:: xta
+      character*70 data
+      character*1 acc
+      real ra,ras,le    
+      integer magic,err
+
+      data='/scratch/tmp/j__data'
+      acc='w'
+      ierr=jcopen(1,JC3D,data,acc)
+      if(ierr.le.-1) print*,'Error icopen 1 : ierr=',ierr
+
+      iddc = 4
+      ra = 1.
+      ras = 2.
+      le = 3.
+      nx = 256
+      ny = 512
+      nz = 256
+      allocate(xta(nx*ny*nz), stat=err)
+      if(err /= 0 ) print*," Error in allocate: ", err
+      do k=1, nz
+       do j=1, ny
+        do i=1, nx
+          if((k-1)*ny*nx + (j-1)*nx+i > nx*ny*nz) print*," mist "
+         xta((k-1)*ny*nx + (j-1)*nx+i) = sin(real(k)/real(nz)) +  
+     &                   sin(real(j)/real(ny)) +
+     &                   sin(real(i)/real(nx)) 
+        enddo
+       enddo
+      enddo
+      ierr=jcwinfo(1,ra,ras,iddc,le,nx, ny, nz)
+
+      print*,'npde = ', npde
+
+      print*,' sum(xta)', sum(xta), xta(10000)
+
+      niter = 0
+      time = 0. 
+      iq = 99
+
+      do i=1,5
+      
+c..... read temp .............................. 
+      ierr=jcwrite(1,JPTEMP,i,time,0,xta(1),nx,ny,nz,iq)
+      ierr=jcwrite(1,JPVELX,i,time,0,xta(1),nx,ny,nz,iq)
+      ierr=jcwrite(1,JPVELY,i,time,0,xta(1),nx,ny,nz,iq)
+      ierr=jcwrite(1,JPVELY,i,time,0,xta(1),nx,ny,nz,iq)
+      print*,'time=',time,' nstep =', niter
+       niter = niter + 1
+       time = time + 1.1
+c..... skip the remaining npde-1 steps..........
+
+      enddo
+
+c..... read another  temp .............................. 
+c... and so on ... 
+      ierr=icclose(1)
+      end
