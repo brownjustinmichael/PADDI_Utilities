@@ -77,7 +77,7 @@ cdef class CompressedFile(object):
 		ierr = jutils.jcopen(self.iu, jutils.JC3D, self.file_name, "r")
 
 		if ierr < 0:
-			raise FileNotFoundError()
+			raise RuntimeError()
 
 		# Read off the information to get the shape of the array
 		jutils.jcrinfo2_(&self.iu, &self.numx, &self.numy, &self.numz, &npde, &ninfo, finfo, cinfo, self.clen)
@@ -159,8 +159,9 @@ class CompressedData(object):
 		try:
 			with CompressedFile(files[0]) as file:
 				self.shape = file.shape()
-		except FileNotFoundError:
-			files = [files]
+		except RuntimeError:
+			if isinstance(files, str):
+				files = [files]
 			with CompressedFile(files[0]) as file:
 				self.shape = file.shape()			
 
@@ -181,25 +182,24 @@ class CompressedData(object):
 
 		# Iterate over the files
 		for file_name in self.files:
-			try:
-				with CompressedFile(file_name) as file:
-					while (True):
-						# Read each compressed entry
+			with CompressedFile(file_name) as file:
+				while (True):
+					# Read each compressed entry
+					try:
 						magic, data, iteration, time, dt = file.read()
+					except EOFError:
+						break
 
-						# Perform the fft, using the last axis as the "real" axis
-						data = np.fft.rfftn(np.asarray(data) / (data.shape[1]) / (data.shape[2]) / (data.shape[3]))
+					# Perform the fft, using the last axis as the "real" axis
+					data = np.fft.rfftn(np.asarray(data) / (data.shape[1]) / (data.shape[2]) / (data.shape[3]))
 
-						# Iterate over the modes and extract the relevant ones to return
-						for mode in args:
-							if self.format[magic] not in modes:
-								modes[self.format[magic]] = {}
-							if mode not in modes[self.format[magic]]:
-								modes[self.format[magic]][mode] = []
-							modes[self.format[magic]][mode].append(data[(0,) + mode])
-
-			except EOFError:
-				pass
+					# Iterate over the modes and extract the relevant ones to return
+					for mode in args:
+						if self.format[magic] not in modes:
+							modes[self.format[magic]] = {}
+						if mode not in modes[self.format[magic]]:
+							modes[self.format[magic]][mode] = []
+						modes[self.format[magic]][mode].append(data[(0,) + mode])
 
 		return modes
 
