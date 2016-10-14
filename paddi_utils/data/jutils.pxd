@@ -1,4 +1,4 @@
-cdef extern from "extern/jutils/jcmagic.h":
+cdef extern from "../../extern/jutils/jcmagic.h":
 	int JC2D = 76
 
 	int JCGRID = 10
