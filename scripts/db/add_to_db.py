@@ -20,7 +20,7 @@ sim = Simulation.from_params(params)
 for type in OutputFile.filenames:
 	default = OutputFile.filenames[type]
 	for file in glob(default + "*"):
-		sim.output_files.append(OutputFile(file=abspath(file), type=str(type)))
+		sim.output_files.append(OutputFile(file=abspath(file), type=str(type), iter=int("".join(filter(str.isdigit, file)))))
 
 try:
 	data = np.genfromtxt("shear_file.dat", delimiter=", ", dtype=[("t", np.float), ("u", np.float), ("v", np.float), ("phi", np.float)])

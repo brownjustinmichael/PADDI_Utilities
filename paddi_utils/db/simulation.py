@@ -65,6 +65,7 @@ class OutputFile(Base):
     __tablename__ = "outputfiles"
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
     file = sqlalchemy.Column(sqlalchemy.String)
+    iter = sqlalchemy.Column(sqlalchemy.Integer)
     sim_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('simulations.id'))
 
     filenames = {"diagnostic": "OUT",
