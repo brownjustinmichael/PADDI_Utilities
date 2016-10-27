@@ -33,7 +33,7 @@ cdef class CompressedFile(object):
 	cdef int numy
 	cdef int numz
 
-	cdef char* file_name
+	cdef char[100] file_name
 	cdef int clen
 	cdef int previous
 	cdef int index
@@ -43,7 +43,7 @@ cdef class CompressedFile(object):
 
 	def __init__(self, file_name, clen=20):
 		bytes = file_name.encode()
-		self.file_name = bytes
+		self.file_name[:len(bytes)] = bytes
 		self.clen = clen
 		self.previous = -1
 		self.index = -1
@@ -77,7 +77,7 @@ cdef class CompressedFile(object):
 		ierr = jutils.jcopen(self.iu, jutils.JC3D, self.file_name, "r")
 
 		if ierr < 0:
-			raise RuntimeError()
+			raise RuntimeError(ierr)
 
 		# Read off the information to get the shape of the array
 		jutils.jcrinfo2_(&self.iu, &self.numx, &self.numy, &self.numz, &npde, &ninfo, finfo, cinfo, self.clen)
@@ -242,7 +242,7 @@ class CompressedData(object):
 							index += 1
 
 						# Record the data
-						obj[self.format[magic]][file.index] = np.asarray(data)
+						obj[self.format[magic]][index] = np.asarray(data)
 			except EOFError:
 				pass
 
