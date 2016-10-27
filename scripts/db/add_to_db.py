@@ -28,7 +28,7 @@ try:
 	umax = np.max(data["u"])
 	sim.tags.append(Tag(name="Ri", value=(params["B_therm"] * params["S_therm"] - params["B_comp"] * params["S_comp"]) / umax ** 2))
 	sim.tags.append(Tag(name="Pe", value=umax * params["Gammaz"] ** 2 / 2 / np.pi))
-except FileNotFoundError:
+except OSError:
 	pass
 
 session.add(sim)
