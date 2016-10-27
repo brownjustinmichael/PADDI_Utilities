@@ -1,12 +1,8 @@
 from os.path import expanduser
 
 import numpy as np
-import astropy.units as u
 import sqlalchemy
 from sqlalchemy.ext.declarative import declarative_base, declared_attr
-from sqlalchemy.sql import func, and_
-from sqlalchemy.sql.elements import ColumnElement
-
 
 Base = declarative_base()
 
