@@ -32,7 +32,7 @@ class PlotArgumentParser(argparse.ArgumentParser):
 		self.add_argument("--output", default=None)
 		self.add_argument("--style", default=None)
 
-	def exit(self, fig):
+	def save(self, fig):
 		# Read the command line arguments
 		args = self.parse_args()
 

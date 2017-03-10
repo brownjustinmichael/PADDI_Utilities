@@ -20,7 +20,7 @@ manext = 1
 mandir = $(prefix)/man/man$(manext)
 
 # The name of your C compiler:
-CC= gcc -D_GNU_SOURCE  
+CC= gcc-4.9 -D_GNU_SOURCE  
 
 # You may need to adjust these cc options:
 CFLAGS= -O  -I$(srcdir)

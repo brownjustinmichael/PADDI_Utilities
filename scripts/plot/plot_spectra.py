@@ -31,4 +31,4 @@ axis.plot(data[-1]["k0"], dataframe[args.field], color="red")
 
 axis.set_yscale("log")
 
-parser.exit(fig)
+parser.save(fig)

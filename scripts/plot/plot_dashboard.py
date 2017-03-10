@@ -105,4 +105,4 @@ rho_prof_axis.plot(rho[-1], profile_data[-1]["z1"], color="red")
 rho_prof_axis.set_ylabel("z")
 rho_prof_axis.set_xlabel("rho")
 
-parser.exit(fig)
+parser.save(fig)

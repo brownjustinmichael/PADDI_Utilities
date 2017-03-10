@@ -37,7 +37,7 @@ setup(name='paddi_utils',
           Extension("paddi_utils.data.compressed", 
                     sources=["paddi_utils/data/compressed.pyx"],
                     libraries=["jc", "jpeg12"],
-                    extra_link_args=["-L./extern/jutils/", "-L./extern/jutils/jpeg12/"]
+                    extra_link_args=["-L./extern/jutils/", "-L./extern/jutils/jpeg12/", "-fPIC"]
                )
           ]
       )

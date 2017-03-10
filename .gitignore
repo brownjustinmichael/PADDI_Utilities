@@ -3,6 +3,9 @@ docs/doctrees/*/*
 docs/html/*
 docs/html/*/*
 
+extern/jutils/*.o
+extern/jutils/jpeg12/*.o
+
 paddi_utils/__pycache__/*
 paddi_utils/*/__pycache__/*
 paddi_utils.egg-info/*

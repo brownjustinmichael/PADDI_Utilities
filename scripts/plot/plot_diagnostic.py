@@ -34,4 +34,4 @@ comp_axis.set_ylabel("Composition Flux")
 comp_axis.set_xlabel("Time")
 comp_axis.set_yscale("log")
 
-parser.exit(fig)
+parser.save(fig)

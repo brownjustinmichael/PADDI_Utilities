@@ -1,4 +1,4 @@
-from io import StringIO
+from io import BytesIO
 import re
 from operator import itemgetter
 from itertools import groupby
@@ -57,10 +57,11 @@ class Profiles(np.ndarray):
                       ("Chem_avg", np.float),]
     """The default format for a spectral output file. This can be overwritten if desired."""
 
-    def __new__(cls, files, format=default_format, sort_by=("z1",), step_regex="#Step=(.*),Time=(.*)", *args, **kwargs):
+    def __new__(cls, files, format=default_format, sort_by=("z1",), step_regex="#Step=(.*),Time=(.*)", idx=None, *args, **kwargs):
         times = []
         timesteps = []
         data = None
+        i = 0
 
         # Iterate through the fiels
         for file_name in files:
@@ -69,13 +70,20 @@ class Profiles(np.ndarray):
             # Go line by line
             for line in open(file_name):
                 # When the end of a block is reached, log the results
+                if idx is not None and i > idx:
+                    break
+
                 if line.lstrip() is "":
-                    # Record the time and array information
+                    # Record the time and array information]
                     time, timestep, array = cls.array_from_string(file_string, format=format, sort_by=sort_by, step_regex=step_regex)
                     file_string = ""
 
                     # Ignore empty blocks
                     if array is None:
+                        continue
+
+                    i += 1
+                    if idx is not None and idx != i - 1:
                         continue
 
                     times.append(time)
@@ -118,11 +126,11 @@ class Profiles(np.ndarray):
         """
         # Read the data from the string
         try:
-            # Python 3
-            array = np.genfromtxt(StringIO(str(string)), dtype=format, comments="#")
+            # Python 3 with byte input
+            array = np.genfromtxt(BytesIO(string.encode()), dtype=format, comments="#")
         except TypeError:
             # Python 2
-            array = np.genfromtxt(StringIO(unicode(string)), dtype=format, comments="#")
+            array = np.genfromtxt(BytesIO(unicode(string)), dtype=format, comments="#")
 
         dims = []
         if len(array) != 0:

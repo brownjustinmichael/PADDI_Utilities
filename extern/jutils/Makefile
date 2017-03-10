@@ -2,7 +2,7 @@ FC            = gfortran
 CFLAGS        = -O2 -DF64   -Ijpeg12 -DUSE12B -I.
 CFLAGS        = -O2 -DF64   -Ijpeg12 -DUSE12B -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
 CFLAGS        = -O2 -g   -Ijpeg12 -D_GNU_SOURCE  -DUSE12B -I.  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
-CFLAGS        = -O2 -g   -Ijpeg12 -D_GNU_SOURCE  -DUSE12B -I. 
+CFLAGS        = -O2 -g   -Ijpeg12 -D_GNU_SOURCE  -DUSE12B -I. -fPIC
 FFLAGS	      =  -32 -DHAS_F_MALLOC
 FFLAGS	      =  
 #CFLAGS        = -O2 -I../jpeg-6a/ 
@@ -21,7 +21,7 @@ HDRS	      = inout.h \
 LDFLAGS	      =
 
 LIBS	      =
-CC            = gcc
+CC            = gcc-4.9
 
 LINKER	      = $CC
 
@@ -104,7 +104,7 @@ all:		libjc.a libjpeg
 $(PROGRAM):     $(OBJS) $(LIBS) jpeg12/libjpeg.a
 		$(LINKER) $(LDFLAGS) $(OBJS) $(LIBS) -o $(PROGRAM)
 
-libjpeg:;	cd jpeg12;./configure CC='gcc -D_GNU_SOURCE  '; make
+libjpeg:;	cd jpeg12;./configure CC='$(CC) -D_GNU_SOURCE -fPIC '; make
 # libjpeg:;	cd jpeg12;./configure CC='icc -D_GNU_SOURCE  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE'; make
 
 libjc.a:         $(OBJS) $(LIBS)
