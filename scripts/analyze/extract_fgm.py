@@ -111,15 +111,15 @@ for sim in q.all():
 		# Determine the mode with the most energy
 		maxidx = np.unravel_index(xy["energy_u3"][idx].argmax(), xy["energy_u3"][idx].shape)
 		# Should print the strongest mode's wavenumbers
-		kx = xy["k0"][idx][maxidx]
-		ky = xy["k1"][idx][maxidx]
+		kx = xy["k0"][0][maxidx]
+		ky = xy["k1"][0][maxidx]
 
 		# Read the Z spectra
 		z = Spectra(z_files, idx=idx//200)
 		# Determine the mode with the most energy
-		maxidx = np.unravel_index(z["energy_u3"][idx].argmax(), z["energy_u3"][idx].shape)
+		maxidx = np.unravel_index(z["energy_u3"][0].argmax(), z["energy_u3"][0].shape)
 		# Should print the strongest mode's wavenumbers
-		kz = xy["k0"][idx][maxidx]
+		kz = xy["k0"][0][maxidx]
 
 		print(kx, ky, kz)
 
