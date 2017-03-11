@@ -16,7 +16,7 @@ guess = (1.0e-5, -5.)
 
 
 def exp(x, a, l):
-	"""A simple function to use for curve fitting"""
+    """A simple function to use for curve fitting"""
     return a * np.exp(10.**l * x)
 
 
@@ -38,26 +38,24 @@ for sim in q.all():
 
     found = True
     for tag in goal_tags:
-    	if tag not in tags:
-    		found = False
+        if tag not in tags:
+            found = False
 
     if found:
-    	continue
+        continue
 
     for tag in goal_tags:
-    	if tag in tags:
-    		session.delete(tags[tag])
-    		tags.pop(tag)
+        if tag in tags:
+            session.delete(tags[tag])
+            tags.pop(tag)
 
     # If the results are already in the database, simply extract them
-    if found:
-    	raise RuntimeError("Not yet implemented")
-	diagnostic_files = []
-	xy_files = []
-	z_files = []
-	for file in sim.output_files:
-	    if file.type == "diagnostic":
-	        diagnostic_files.append(file.file)
+    diagnostic_files = []
+    xy_files = []
+    z_files = []
+    for file in sim.output_files:
+        if file.type == "diagnostic":
+            diagnostic_files.append(file.file)
         if file.type == "xyspec":
             xy_files.append(file.file)
         if file.type == "zspec":
@@ -65,71 +63,71 @@ for sim in q.all():
     diagnostic_files.sort()
     xy_files.sort()
     z_files.sort()
-	try:
-	    d = Diagnostic(diagnostic_files)
-	except IOError:
-	    print("Couldn't find file")
-	    continue
-	plt.plot(d["t"][::100], d["Temp_max"][::100])
-	plt.yscale("log")
-	plt.show()
-	median = np.sqrt(np.max(d["Temp_max"]) * np.min(d["Temp_max"]))
-	idx = np.argmax(d["Temp_max"] > median)
-	# Check if this is a decaying simulation
-	if idx == 0:
-		print("Decay")
+    try:
+        d = Diagnostic(diagnostic_files)
+    except IOError:
+        print("Couldn't find file")
+        continue
+    plt.plot(d["t"][::100], d["Temp_max"][::100])
+    plt.yscale("log")
+    plt.show()
+    median = np.sqrt(np.max(d["Temp_max"]) * np.min(d["Temp_max"]))
+    idx = np.argmax(d["Temp_max"] > median)
+    # Check if this is a decaying simulation
+    if idx == 0 or np.argmax(d["Temp_max"] > 1.0) == 0:
+        print("Decay")
 
-		sim.tags.append(Tag(name="linear_amplitude", value=0.0))
-		sim.tags.append(Tag(name="linear_growth", value=0.0))
-		sim.tags.append(Tag(name="linear_kx", value=0.0))
-		sim.tags.append(Tag(name="linear_ky", value=0.0))
-		sim.tags.append(Tag(name="linear_kz", value=0.0))
-	else:
-		# Set the lower bound to the the global minimum
-		argmin = np.argmin(d["Temp_max"][:])
-		# Set the upper bound to be where the max temperature exceeds unity
-		# Since the temperature is unitless, this is a good value to indicate 
-		# That the system has become nonlinear
-		argmax = np.argmax(d["Temp_max"][:] > 1.0e0)
-		print(argmin, argmax)
-		# Calculate the best exponential fit to the linear region
-		params, cov = curve_fit(exp, d["t"][argmin:argmax], d["Temp_max"][argmin:argmax], p0=guess, method="dogbox", sigma=1/d["Temp_max"][argmin:argmax])
-		print(params)
-		print(cov)
+        sim.tags.append(Tag(name="linear_amplitude", value=0.0))
+        sim.tags.append(Tag(name="linear_growth", value=0.0))
+        sim.tags.append(Tag(name="linear_kx", value=0.0))
+        sim.tags.append(Tag(name="linear_ky", value=0.0))
+        sim.tags.append(Tag(name="linear_kz", value=0.0))
+    else:
+        # Set the lower bound to the the global minimum
+        argmin = np.argmin(d["Temp_max"][:])
+        # Set the upper bound to be where the max temperature exceeds unity
+        # Since the temperature is unitless, this is a good value to indicate 
+        # That the system has become nonlinear
+        argmax = np.argmax(d["Temp_max"][:] > 1.0e0)
+        print(argmin, argmax)
+        # Calculate the best exponential fit to the linear region
+        params, cov = curve_fit(exp, d["t"][argmin:argmax], d["Temp_max"][argmin:argmax], p0=guess, method="dogbox", sigma=1/d["Temp_max"][argmin:argmax])
+        print(params)
+        print(cov)
 
-		a, l = params
-		l = 10.0 ** l
+        a, l = params
+        l = 10.0 ** l
 
-	    plt.plot(d["t"][:], d["Temp_max"][:])
-	    plt.plot(d["t"][argmin:argmax], a * np.exp(l * d["t"][argmin:argmax]))
-	    plt.yscale("log")
-	    plt.ylim((np.min(d["Temp_max"])/2, np.max(d["Temp_max"]*2)))
-	    plt.show()
+        plt.plot(d["t"][:], d["Temp_max"][:])
+        plt.plot(d["t"][argmin:argmax], a * np.exp(l * d["t"][argmin:argmax]))
+        plt.yscale("log")
+        plt.ylim((np.min(d["Temp_max"])/2, np.max(d["Temp_max"]*2)))
+        plt.show()
 
-		# Read the XY spectra
-		xy = Spectra(xy_files, dims=2, idx=idx//200)
-		# Determine the mode with the most energy
-		maxidx = np.unravel_index(xy["energy_u3"][idx].argmax(), xy["energy_u3"][idx].shape)
-		# Should print the strongest mode's wavenumbers
-		kx = xy["k0"][0][maxidx]
-		ky = xy["k1"][0][maxidx]
+        # Read the XY spectra
+        xy = Spectra(xy_files, dims=2, idx=idx//200)
+        # Determine the mode with the most energy
+        maxidx = np.unravel_index(xy["energy_u3"][0].argmax(), xy["energy_u3"][0].shape)
+        # Should print the strongest mode's wavenumbers
+        kx = xy["k0"][0][maxidx]
+        ky = xy["k1"][0][maxidx]
 
-		# Read the Z spectra
-		z = Spectra(z_files, idx=idx//200)
-		# Determine the mode with the most energy
-		maxidx = np.unravel_index(z["energy_u3"][0].argmax(), z["energy_u3"][0].shape)
-		# Should print the strongest mode's wavenumbers
-		kz = xy["k0"][0][maxidx]
+        # Read the Z spectra
+        z = Spectra(z_files, idx=idx//200)
+        # Determine the mode with the most energy
+        maxidx = np.unravel_index(z["energy_u3"][0].argmax(), z["energy_u3"][0].shape)
+        # Should print the strongest mode's wavenumbers
+        kz = z["k0"][0][maxidx]
 
-		print(kx, ky, kz)
+        print(kx, ky, kz)
 
-		sim.tags.append(Tag(name="linear_amplitude", value=params[0]))
-		sim.tags.append(Tag(name="linear_growth", value=10.0**params[1]))
-		sim.tags.append(Tag(name="linear_kx", value=kx))
-		sim.tags.append(Tag(name="linear_ky", value=ky))
-		sim.tags.append(Tag(name="linear_kz", value=kz))
+        sim.tags.append(Tag(name="linear_amplitude", value=params[0]))
+        sim.tags.append(Tag(name="linear_growth", value=10.0**params[1]))
+        sim.tags.append(Tag(name="linear_kx", value=kx))
+        sim.tags.append(Tag(name="linear_ky", value=ky))
+        sim.tags.append(Tag(name="linear_kz", value=kz))
 
-	session.commit()
+    session.commit()
 
 
 

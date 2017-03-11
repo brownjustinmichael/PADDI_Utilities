@@ -141,6 +141,7 @@ class Profiles(np.ndarray):
                 dims.append(total // np.argmax(array[key] != array[key][0]))
 
             dims.reverse()
+            dims = tuple(np.maximum(dims, 1))
 
             # Reshape the array
             array = array.reshape([1] + dims)
